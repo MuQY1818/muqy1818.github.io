@@ -3,7 +3,7 @@
 He is currently pursuing a Bachelor's Degree in Computer Science and Technology, at School of Computer Science and Technology, China University of Mining and Technology, China.
 
 #### Email
-weijuebu[at]cumt.edu.cn
+weijuebu@cumt.edu.cn
 
 #### Education
 B.E., Computer Science and Technology, China University of Mining and Technology, 2023—present.
