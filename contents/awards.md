@@ -1,1 +1,1 @@
-- Second-prize Scholarship of CUMT, 2019.
+- Second-prize Scholarship of CUMT, 2024.
