@@ -9,5 +9,5 @@ weijuebu@cumt.edu.cn
 B.E., Computer Science and Technology, China University of Mining and Technology, 2023—present.
 
 #### Research Interests
-Deep Learning, Multi-modal Learning, Large Language Models, Intelligent Agents.
+Deep Learning, Multi-modal Learning, Large Language Models, Intelligent Agents, Reinforcement Learning.
 
