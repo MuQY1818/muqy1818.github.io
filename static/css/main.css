@@ -32,15 +32,22 @@
     overflow: hidden;
 }
 
+/* 移除暗色遮罩层，让背景图片完全显示 */
 .top-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(1px);
+    display: none;
+}
+
+/* 优化顶部文字的可读性 */
+.top-section .text-white {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 700;
+}
+
+/* 确保背景图片覆盖整个区域 */
+.top-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .top-section::after {
@@ -82,6 +89,138 @@ section .main-body{
     line-height: 2.2rem;
     color: #555;
     text-align: justify;
+}
+
+/* 美化代码块和徽章 */
+section .main-body img[src*="shields.io"] {
+    margin: 2px 4px;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+section .main-body img[src*="shields.io"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 美化列表样式 */
+section .main-body ul {
+    padding-left: 1.5rem;
+}
+
+section .main-body li {
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+section .main-body li::marker {
+    color: var(--h-title-color);
+    font-weight: bold;
+}
+
+/* 美化强调文本 */
+section .main-body strong {
+    color: var(--h-title-color);
+    font-weight: 600;
+}
+
+/* 美化链接 */
+section .main-body a {
+    color: var(--h-title-color);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+}
+
+section .main-body a:hover {
+    border-bottom-color: var(--h-title-color);
+    color: #2c3bd9;
+}
+
+/* 美化分隔线 */
+section .main-body hr {
+    border: none;
+    height: 2px;
+    background: var(--secondary-gradient);
+    margin: 2rem 0;
+    border-radius: 1px;
+}
+
+/* 美化引用块 */
+section .main-body blockquote {
+    border-left: 4px solid var(--h-title-color);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    background: rgba(57, 72, 210, 0.05);
+    border-radius: 0 8px 8px 0;
+}
+
+/* 美化emoji和图标 */
+section .main-body h2,
+section .main-body h3,
+section .main-body h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* 美化表格样式 */
+section .main-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section .main-body th,
+section .main-body td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+section .main-body th {
+    background: var(--primary-gradient);
+    color: white;
+    font-weight: 600;
+}
+
+section .main-body tr:hover {
+    background: rgba(57, 72, 210, 0.05);
+}
+
+/* 美化代码块 */
+section .main-body code {
+    background: rgba(57, 72, 210, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: var(--h-title-color);
+}
+
+section .main-body pre {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border-left: 4px solid var(--h-title-color);
+}
+
+/* 响应式图片 */
+section .main-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+section .main-body img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* 添加卡片样式 */
