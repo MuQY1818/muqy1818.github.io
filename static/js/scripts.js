@@ -37,7 +37,18 @@ window.addEventListener('DOMContentLoaded', event => {
             const yml = jsyaml.load(text);
             Object.keys(yml).forEach(key => {
                 try {
-                    document.getElementById(key).innerHTML = yml[key];
+                    if (key === 'top-section-bg-text') {
+                         new Typed('#top-section-bg-text', {
+                            strings: [yml[key]],
+                            typeSpeed: 100,
+                            startDelay: 500,
+                            showCursor: true,
+                            cursorChar: '_',
+                            autoInsertCss: true,
+                        });
+                    } else {
+                        document.getElementById(key).innerHTML = yml[key];
+                    }
                 } catch {
                     console.log("Unknown id and value: " + key + "," + yml[key].toString())
                 }
@@ -45,6 +56,34 @@ window.addEventListener('DOMContentLoaded', event => {
             })
         })
         .catch(error => console.log(error));
+
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 50,
+        easing: 'ease-out-cubic'
+    });
+
+    // Initialize Vanta.js
+    if (window.VANTA) {
+        VANTA.NET({
+            el: "#vanta-canvas",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x667eea,
+            backgroundColor: 0x111122,
+            points: 14.00,
+            maxDistance: 22.00,
+            spacing: 16.00,
+            showDots: true
+        })
+    }
 
 
     // Marked
