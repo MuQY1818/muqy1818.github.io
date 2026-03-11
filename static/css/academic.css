@@ -1,0 +1,268 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f2f2f2; /* Light grey background */
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    color: #222;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #004499;
+}
+
+.main-container {
+    max-width: 1080px; /* Increased width from 960px */
+    background-color: #fff; /* White content area */
+    padding: 50px; /* Slightly more padding */
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05); /* Soft shadow */
+    border-radius: 4px;
+}
+
+/* Header */
+.header-section {
+    margin-bottom: 30px;
+}
+
+.name {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #004499; /* Academic blue */
+    margin-bottom: 10px;
+}
+
+.affiliation-list {
+    margin-bottom: 15px;
+}
+
+.affiliation-item {
+    font-size: 1.05rem;
+    color: #444;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.affiliation-item i {
+    margin-right: 8px;
+    color: #666;
+    width: 20px;
+    text-align: center;
+}
+
+.social-links .btn-social {
+    width: 36px;
+    height: 36px;
+    line-height: 24px; /* Center icon vertically */
+    padding: 6px 0;
+    text-align: center;
+    border-radius: 4px;
+    margin-right: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.btn-email { background-color: #007bff; }
+.btn-github { background-color: #333; }
+.btn-wechat { background-color: #07c160; } /* WeChat Green */
+.btn-twitter { background-color: #1da1f2; }
+
+.social-links .btn-social:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.stats-badges img {
+    height: 20px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.bio-text {
+    font-family: 'Georgia', serif; /* Match the reference bio font style */
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* Re-add Profile Img Style (accidentally removed in previous block) */
+.profile-img-container {
+    padding: 0; /* Remove padding to align with right edge */
+    text-align: right;
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 260px; /* Match reference width */
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px !important; /* Slight rounding like reference */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Section Common */
+.section-title-sm {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #0066cc;
+    font-weight: 600;
+    border-bottom: none; /* Removed underline to match cleaner look */
+}
+
+/* News */
+.news-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.news-list li {
+    margin-bottom: 12px;
+}
+
+.news-list .date {
+    margin-right: 12px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    min-width: 80px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Publications */
+.publication-item {
+    padding-bottom: 25px;
+    border-bottom: 1px dashed #f8f9fa;
+    margin-bottom: 25px;
+}
+
+.publication-item:last-child {
+    border-bottom: none;
+}
+
+.pub-media img {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+}
+
+.pub-media img:hover {
+    transform: scale(1.02);
+}
+
+.pub-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.pub-authors {
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 1.05rem;
+}
+
+.pub-venue {
+    font-style: italic;
+    color: #0066cc; /* Highlight venue */
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.pub-desc {
+    font-size: 1rem;
+    color: #444;
+    text-align: justify;
+}
+
+.pub-links {
+    margin-top: 10px;
+}
+
+.pub-links .btn {
+    font-size: 0.85rem;
+    padding: 3px 12px;
+    margin-right: 8px;
+    border-radius: 20px;
+}
+
+/* Awards */
+.awards-list {
+    padding-left: 20px;
+}
+
+.awards-list li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 30px;
+    margin-top: 50px;
+}
+
+/* GitHub Corner */
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .header-section {
+        text-align: center;
+    }
+    
+    .header-section .col-md-4 {
+        order: -1; /* Photo on top on mobile */
+        margin-bottom: 20px;
+    }
+
+    .profile-img {
+        max-width: 200px;
+    }
+    
+    .pub-media {
+        margin-bottom: 15px;
+    }
+}
