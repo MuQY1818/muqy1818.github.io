@@ -109,12 +109,13 @@ a:hover {
 }
 
 .profile-img {
-    width: 100%;
-    max-width: 260px; /* Match reference width */
-    height: auto;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
-    border-radius: 4px !important; /* Slight rounding like reference */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 50% !important;
+    border: 4px solid #f5f7fb;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
 /* Section Common */
@@ -263,7 +264,8 @@ a:hover {
     }
 
     .profile-img {
-        max-width: 200px;
+        width: 200px;
+        height: 200px;
     }
     
     .pub-media {
