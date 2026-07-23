@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "tsinghua-exam-cpp-template",
+    "title": "清华机考板子：把 4400 行 LaTeX 整理成一份开卷 cheat sheet",
+    "date": "2026-07-24",
+    "tags": ["Algorithms", "C++", "Exam Prep"],
+    "excerpt": "面向清华推免机考（IOI 赛制、开卷纸质资料），我把算法笔记蒸馏成一份 4400 行 LaTeX 的打印版 C++17 板子：STL 速查在前、模板在后，外加 36 道真题统计与保底两题策略。本文介绍设计思路与使用策略，完整内容见系列四篇。"
+  },
+  {
+    "slug": "tsinghua-board-1-stl",
+    "title": "清华机考板子（一）：C++17 STL 速查与算法选型",
+    "date": "2026-07-24",
+    "tags": ["Algorithms", "C++", "Exam Prep"],
+    "excerpt": "C++17/STL 高频用法速查：程序骨架、IO 与字符串解析、容器与哈希、<algorithm> 高频函数、常见复杂度与坑点；附清华机考复习优先级、数据范围反推复杂度、题型信号表与 2016–2025 真题统计。"
+  },
+  {
+    "slug": "tsinghua-board-2-greedy-ds",
+    "title": "清华机考板子（二）：贪心 · 动态规划 · 数据结构 · 基础算法",
+    "date": "2026-07-24",
+    "tags": ["Algorithms", "C++", "Exam Prep"],
+    "excerpt": "25 个高频模板，每个含用途、思路、复杂度与可运行完整程序：区间贪心、Johnson 规则、背包、LIS/LCS、区间/树形/状压 DP、并查集、单调栈/队列、树状数组、线段树、二分、前缀和与差分、双指针、逆序对等。"
+  },
+  {
+    "slug": "tsinghua-board-3-graph-math",
+    "title": "清华机考板子（三）：搜索与图论 · 数学与数论",
+    "date": "2026-07-24",
+    "tags": ["Algorithms", "C++", "Exam Prep"],
+    "excerpt": "23 个高频模板：DFS/BFS、拓扑排序、0-1 BFS、Dijkstra、Bellman-Ford、Floyd、Kruskal、Tarjan SCC、状态哈希 BFS、矩阵树定理、快速幂、exgcd、线性筛、组合数、欧拉函数、矩阵快速幂、SG 博弈等。"
+  },
+  {
+    "slug": "tsinghua-board-4-string-sim",
+    "title": "清华机考板子（四）：字符串 · 大模拟 · 提交前检查",
+    "date": "2026-07-24",
+    "tags": ["Algorithms", "C++", "Exam Prep"],
+    "excerpt": "字符串高频模板（KMP、Trie 字典树、字符串哈希、01 Trie 最大异或对、表达式求值双栈）、大模拟完整范例（五子棋）与提交前检查清单。"
+  },
+  {
+    "slug": "hello-blog",
+    "title": "Hello Blog: Why I Started Writing",
+    "date": "2026-07-23",
+    "tags": ["Meta", "Research Notes"],
+    "excerpt": "Why I built this blog, what I plan to write about — Embodied AI, VLMs, and engineering notes — and a quick tour of what the site can render: code, math, tables, and more."
+  }
+]
