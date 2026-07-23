@@ -1,0 +1,141 @@
+/* Blog list page (blog.html) + homepage "Recent Posts" preview (index.html) */
+(function () {
+    'use strict';
+
+    var MANIFEST_URL = 'posts/index.json';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initThemeToggle();
+
+        var wantsList = document.getElementById('posts-grid');
+        var wantsRecent = document.getElementById('recent-posts');
+        if (!wantsList && !wantsRecent) return;
+
+        fetch(MANIFEST_URL)
+            .then(function (r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function (posts) {
+                posts.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+                if (wantsList) initBlogList(posts);
+                if (wantsRecent) renderRecent(posts);
+            })
+            .catch(function (err) {
+                console.error('Failed to load posts manifest:', err);
+                if (wantsRecent) {
+                    wantsRecent.innerHTML = '<li><time>----.--</time><p>Posts coming soon.</p></li>';
+                }
+            });
+    });
+
+    /* ---------- theme toggle ---------- */
+
+    function initThemeToggle() {
+        var btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+        var sync = function () {
+            var dark = document.documentElement.dataset.theme === 'dark';
+            btn.textContent = dark ? '[ Light ]' : '[ Dark ]';
+            btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+        };
+        btn.addEventListener('click', function () {
+            var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.dataset.theme = next;
+            localStorage.setItem('blog-theme', next);
+            sync();
+        });
+        sync();
+    }
+
+    /* ---------- blog list page ---------- */
+
+    function initBlogList(posts) {
+        var grid = document.getElementById('posts-grid');
+        var searchInput = document.getElementById('blog-search-input');
+        var tagBox = document.getElementById('tag-filters');
+        var activeTag = 'All';
+        var query = '';
+
+        var tags = ['All'].concat(Array.from(new Set(posts.flatMap(function (p) { return p.tags || []; }))));
+        tagBox.innerHTML = tags.map(function (t) {
+            return '<button class="tag-pill' + (t === 'All' ? ' active' : '') + '" data-tag="' + escapeHtml(t) + '">' + escapeHtml(t) + '</button>';
+        }).join('');
+
+        tagBox.addEventListener('click', function (e) {
+            var btn = e.target.closest('.tag-pill');
+            if (!btn) return;
+            activeTag = btn.dataset.tag;
+            tagBox.querySelectorAll('.tag-pill').forEach(function (b) { b.classList.toggle('active', b === btn); });
+            render();
+        });
+
+        searchInput.addEventListener('input', function () {
+            query = searchInput.value.trim().toLowerCase();
+            render();
+        });
+
+        function render() {
+            var filtered = posts.filter(function (p) {
+                var tagOk = activeTag === 'All' || (p.tags || []).indexOf(activeTag) >= 0;
+                var haystack = [p.title, p.excerpt, (p.tags || []).join(' ')].join(' ').toLowerCase();
+                return tagOk && (!query || haystack.indexOf(query) >= 0);
+            });
+
+            if (!filtered.length) {
+                grid.innerHTML = '<div class="blog-empty">[ No posts found ]</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(function (p, i) {
+                return '' +
+                    '<div class="post-card" style="animation-delay:' + Math.min(i * 60, 360) + 'ms">' +
+                        '<div class="post-card-meta">' +
+                            '<span class="post-card-date">' + formatDate(p.date) + '</span>' +
+                            (p.tags || []).map(function (t) { return '<span class="mini-tag">' + escapeHtml(t) + '</span>'; }).join('') +
+                        '</div>' +
+                        '<h3 class="post-card-title">' +
+                            '<a href="post.html?p=' + encodeURIComponent(p.slug) + '">' + escapeHtml(p.title) + '</a>' +
+                        '</h3>' +
+                        '<p class="post-card-excerpt">' + escapeHtml(p.excerpt || '') + '</p>' +
+                        '<span class="read-more">Read</span>' +
+                    '</div>';
+            }).join('');
+        }
+
+        render();
+    }
+
+    /* ---------- homepage recent posts (news-list markup) ---------- */
+
+    function renderRecent(posts) {
+        var box = document.getElementById('recent-posts');
+        var recent = posts.slice(0, 3);
+        if (!recent.length) {
+            box.innerHTML = '<li><time>----.--</time><p>No posts yet. Stay tuned!</p></li>';
+            return;
+        }
+        box.innerHTML = recent.map(function (p) {
+            var ym = p.date.slice(0, 7);
+            return '' +
+                '<li>' +
+                    '<time datetime="' + escapeHtml(ym) + '">' + escapeHtml(ym.replace('-', '.')) + '</time>' +
+                    '<p><a href="post.html?p=' + encodeURIComponent(p.slug) + '">' + escapeHtml(p.title) + '</a></p>' +
+                '</li>';
+        }).join('');
+    }
+
+    /* ---------- helpers ---------- */
+
+    function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+
+    function formatDate(iso) {
+        return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
+            year: 'numeric', month: 'short', day: 'numeric'
+        });
+    }
+})();

@@ -1,5 +1,23 @@
 # Project Update Notes
 
+## 2026-07-24
+
+- Dark mode is now site-wide (previously blog-only): the palette redefinitions + `.theme-toggle` rule moved from `blog.css` into `academic.css` (blog.css keeps only blog components); hard-coded light tints overridden under `html[data-theme="dark"]` are `.topbar`, `.ticker`, `.news-list li:hover`. The `[ Dark ]` toggle lives in the topnav on every page (same localStorage key `blog-theme`, same inline pre-paint script).
+- `home.js` canvas line-art follows the theme: all `rgba(20,20,19,...)` ink strokes go through a mutable `INK` variable (light `20,20,19` / dark `236,234,227`), contact shadows through `SHADE` (dark = `0,0,0`); a MutationObserver on `<html data-theme>` swaps values and the next animation frame repaints. Coral accents unchanged.
+- Published the full Tsinghua exam cheatsheet as a 4-part blog series (converted from the LaTeX parts in the author's Obsidian vault, code blocks verified byte-identical to source): `tsinghua-board-1-stl`, `-2-greedy-ds`, `-3-graph-math`, `-4-string-sim`, plus the rewritten overview `tsinghua-exam-cpp-template` which links the series. tikzpicture figures from the source are not renderable on the web — their captions/essential in-figure content were preserved as text/formulas instead. Posts are reference material, so tone is kept formal/technical.
+- cache-bust bumped to `?v=20260724a` (academic.css + home.js + blog.css).
+
+## 2026-07-23
+
+- Added a client-side Markdown blog module (no build step, GitHub Pages friendly):
+  - posts live in `posts/<slug>.md`; `posts/index.json` is the manifest (slug/title/date/tags/excerpt); publishing = add the md file + a manifest entry + push. Image paths inside posts are relative to the site root (e.g. `static/assets/img/...`).
+  - `blog.html` = list page (live search + tag pill filters + card grid, staggered fade-in); `post.html?p=<slug>` = reader page (vendored `marked.min.js` + DOMPurify + highlight.js + KaTeX auto-render, the latter three from CDN). Math is protected from the Markdown parser via `@@MATHn@@` placeholders before `marked.parse`, restored before sanitize; delimiters `$$...$$`, `\[...\]`, `\(...\)`.
+  - homepage gained a Blog section (Module 02; Publications/Awards renumbered 03/04) filled by `static/js/blog.js` into `#recent-posts` with news-list markup; topnav gained a `Blog` link (the mobile CSS hides the 3rd nav item = Awards, Blog stays visible).
+  - `static/css/blog.css` reuses the academic.css design tokens (palette/fonts/shadows) instead of defining its own; dark mode (blog pages only, homepage stays light) just redefines the same CSS vars under `html[data-theme="dark"]` + overrides the hard-coded light topbar tint; persisted in localStorage key `blog-theme`; toggle is the `[ Dark ]` topnav button on blog pages.
+  - reader page extras: coral reading progress bar, sticky TOC built from h2/h3 (hidden < 992px), code blocks with feed-bar style header + copy button, prev/next nav, reading-time estimate.
+  - blog pages deliberately do NOT load `home.js` or the robot-arm canvas — quiet reading page; consistency comes from shared tokens/topbar/footer.
+  - cache-bust bumped to `?v=20260723a`.
+
 ## 2026-07-19 (v3)
 
 - Anonymized the ChainVLA submission target for double-blind review: every public mention of the venue was removed (chip, Fig. 02 caption, marquee ticker all say just "Under Review"). Keep it that way until acceptance — do not re-add the venue name to any published file, including this one.

@@ -12,7 +12,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="static/css/academic.css?v=20260719e">
+    <link rel="stylesheet" href="static/css/academic.css?v=20260724a">
+
+    <!-- Restore saved theme before first paint -->
+    <script>
+        document.documentElement.dataset.theme = localStorage.getItem('blog-theme') || 'light';
+    </script>
 </head>
 <body>
 
@@ -26,7 +31,9 @@
             <a href="#news">News</a>
             <a href="#publications">Publications</a>
             <a href="#awards">Awards</a>
+            <a href="blog.html">Blog</a>
             <a href="https://github.com/muqy1818" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+            <button id="theme-toggle" class="theme-toggle" title="Switch to dark mode">[ Dark ]</button>
         </nav>
     </div>
 </header>
@@ -145,6 +152,23 @@
         </ol>
     </section>
 
+    <!-- ============ BLOG ============ -->
+    <section class="sec reveal" id="blog">
+        <div class="sec-head">
+            <div>
+                <p class="eyebrow"><span class="tick" aria-hidden="true"></span>[ Blog ]</p>
+                <h2>Recent Posts</h2>
+            </div>
+            <span class="sec-index" aria-hidden="true">Module 02</span>
+        </div>
+
+        <ol class="news-list" id="recent-posts"></ol>
+
+        <div class="pub-links blog-more">
+            <a href="blog.html">All Posts ↗</a>
+        </div>
+    </section>
+
     <!-- ============ PUBLICATIONS ============ -->
     <section class="sec reveal" id="publications">
         <div class="sec-head">
@@ -152,7 +176,7 @@
                 <p class="eyebrow"><span class="tick" aria-hidden="true"></span>[ Selected Publications &amp; Projects ]</p>
                 <h2>Research</h2>
             </div>
-            <span class="sec-index" aria-hidden="true">Module 02</span>
+            <span class="sec-index" aria-hidden="true">Module 03</span>
         </div>
 
         <!-- RoboStream -->
@@ -326,7 +350,7 @@
                 <p class="eyebrow"><span class="tick" aria-hidden="true"></span>[ Honors &amp; Awards ]</p>
                 <h2>Selected Awards</h2>
             </div>
-            <span class="sec-index" aria-hidden="true">Module 03</span>
+            <span class="sec-index" aria-hidden="true">Module 04</span>
         </div>
 
         <ol class="awards-list">
@@ -353,6 +377,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="static/js/home.js?v=20260719e"></script>
+<script src="static/js/home.js?v=20260724a"></script>
+<script src="static/js/blog.js"></script>
 </body>
 </html>

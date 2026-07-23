@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog · Weijue Bu</title>
+    <meta name="description" content="Technical blog of Weijue Bu: Embodied AI, VLMs, and engineering notes.">
+    <meta name="author" content="Weijue Bu">
+    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/academic.css?v=20260724a">
+    <link rel="stylesheet" href="static/css/blog.css?v=20260724a">
+
+    <!-- Restore saved theme before first paint -->
+    <script>
+        document.documentElement.dataset.theme = localStorage.getItem('blog-theme') || 'light';
+    </script>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <a class="brand" href="index.html">W.BU<span class="cursor" aria-hidden="true">_</span></a>
+        <nav class="topnav" aria-label="Sections">
+            <a href="index.html">Home</a>
+            <a href="blog.html" aria-current="page">Blog</a>
+            <a href="https://github.com/muqy1818" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+            <button id="theme-toggle" class="theme-toggle" title="Switch to dark mode">[ Dark ]</button>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <section class="blog-hero">
+        <p class="eyebrow"><span class="tick" aria-hidden="true"></span>[ Blog ]</p>
+        <h1>Notes &amp; Writing</h1>
+        <p class="subtitle">Embodied AI · VLMs · Engineering</p>
+
+        <div class="blog-controls">
+            <div class="blog-search">
+                <input id="blog-search-input" type="text" placeholder="Search posts..." aria-label="Search posts">
+            </div>
+            <div id="tag-filters" class="tag-filters"></div>
+        </div>
+    </section>
+
+    <div id="posts-grid" class="posts-grid"></div>
+
+</main>
+
+<footer class="footer">
+    <div class="wrap footer-inner">
+        <span>© 2026 Weijue Bu · Xuzhou / Shenzhen, China</span>
+        <span class="footer-right">
+            <a href="https://github.com/MuQY1818/muqy1818.github.io" target="_blank" rel="noopener">Source ↗</a>
+        </span>
+    </div>
+</footer>
+
+<script src="static/js/blog.js"></script>
+</body>
+</html>

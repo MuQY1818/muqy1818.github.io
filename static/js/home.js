@@ -18,6 +18,18 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var TAU = Math.PI * 2;
 
+    /* canvas palette follows the page theme (coral accents work in both):
+       INK = line-art strokes, SHADE = contact shadows. The observer swaps
+       the values on a theme toggle; the next animation frame repaints. */
+    var darkTheme = document.documentElement.dataset.theme === 'dark';
+    var INK = darkTheme ? '236,234,227' : '20,20,19';
+    var SHADE = darkTheme ? '0,0,0' : '20,20,19';
+    new MutationObserver(function () {
+        darkTheme = document.documentElement.dataset.theme === 'dark';
+        INK = darkTheme ? '236,234,227' : '20,20,19';
+        SHADE = darkTheme ? '0,0,0' : '20,20,19';
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
     /* ---------- 1. Robot-arm pick-and-place + LiDAR perception canvas ---------- */
     var canvas = document.getElementById('bg-canvas');
     if (canvas && !reduceMotion) {
@@ -226,8 +238,8 @@
 
         /* soft contact shadow: two layered discs, very low alpha */
         function softShadow(proj, x, z, radius, alpha) {
-            floorDisc(proj, x, z, radius, 'rgba(20,20,19,' + (alpha * 0.5).toFixed(3) + ')');
-            floorDisc(proj, x, z, radius * 0.62, 'rgba(20,20,19,' + alpha.toFixed(3) + ')');
+            floorDisc(proj, x, z, radius, 'rgba(' + SHADE + ',' + (alpha * 0.5).toFixed(3) + ')');
+            floorDisc(proj, x, z, radius * 0.62, 'rgba(' + SHADE + ',' + alpha.toFixed(3) + ')');
         }
 
         /* tapered capsule outline between two projected points:
@@ -344,11 +356,11 @@
             scored.sort(function (x, y) { return y[0] - x[0]; });
             for (i = 0; i < 2; i++) {
                 var f = F[scored[i][1]];
-                hatchQuad([V[f[0]], V[f[1]], V[f[2]], V[f[3]]], 'rgba(20,20,19,0.10)');
+                hatchQuad([V[f[0]], V[f[1]], V[f[2]], V[f[3]]], 'rgba(' + INK + ',0.10)');
             }
             var E = [[0, 1], [1, 3], [3, 2], [2, 0], [4, 5], [5, 7], [7, 6], [6, 4], [0, 4], [1, 5], [3, 7], [2, 6]];
             for (i = 0; i < E.length; i++) {
-                line(V[E[i][0]], V[E[i][1]], 'rgba(20,20,19,0.30)', 1);
+                line(V[E[i][0]], V[E[i][1]], 'rgba(' + INK + ',0.30)', 1);
             }
         }
 
@@ -453,9 +465,9 @@
             for (i = -4; i <= 4; i++) {
                 var g = i * 0.5;
                 a = proj([g, 0, -2.0]); b = proj([g, 0, 2.0]);
-                line(a, b, 'rgba(20,20,19,0.055)');
+                line(a, b, 'rgba(' + INK + ',0.055)');
                 a = proj([-2.0, 0, g]); b = proj([2.0, 0, g]);
-                line(a, b, 'rgba(20,20,19,0.055)');
+                line(a, b, 'rgba(' + INK + ',0.055)');
             }
 
             /* soft contact shadows on the floor: cube (grows/pales when
@@ -467,12 +479,12 @@
             softShadow(proj, arm.links[2][0], arm.links[2][2], 0.09, 0.035);
 
             /* concentric LiDAR range rings around the base */
-            strokeRing(proj, 0.65, 'rgba(20,20,19,0.08)');
-            strokeRing(proj, 1.25, 'rgba(20,20,19,0.08)');
-            strokeRing(proj, SCAN_R, 'rgba(20,20,19,0.09)');
+            strokeRing(proj, 0.65, 'rgba(' + INK + ',0.08)');
+            strokeRing(proj, 1.25, 'rgba(' + INK + ',0.08)');
+            strokeRing(proj, SCAN_R, 'rgba(' + INK + ',0.09)');
 
             /* base plate */
-            strokeRing(proj, 0.30, 'rgba(20,20,19,0.18)');
+            strokeRing(proj, 0.30, 'rgba(' + INK + ',0.18)');
 
             /* PLACE workstation: low plinth with a coral top ring,
                encircled by the floor reticle (ticks + pulsing dashed ring).
@@ -480,14 +492,14 @@
                here, front halves after the cube, so the rings wrap around a
                seated cube instead of crossing its front face. */
             var pf = PLACE.floor;
-            ring3(proj, pf, 0.16, 'rgba(20,20,19,0.24)');
+            ring3(proj, pf, 0.16, 'rgba(' + INK + ',0.24)');
             for (i = 0; i < 3; i++) {
                 var wa = i * TAU / 4;
                 a = proj([pf[0] + Math.cos(wa) * 0.16, 0, pf[2] + Math.sin(wa) * 0.16]);
                 b = proj([pf[0] + Math.cos(wa) * 0.15, 0.03, pf[2] + Math.sin(wa) * 0.15]);
-                line(a, b, 'rgba(20,20,19,0.22)', 1);
+                line(a, b, 'rgba(' + INK + ',0.22)', 1);
             }
-            ringArc(proj, [pf[0], 0.03, pf[2]], 0.15, 0, Math.PI, 'rgba(20,20,19,0.22)');
+            ringArc(proj, [pf[0], 0.03, pf[2]], 0.15, 0, Math.PI, 'rgba(' + INK + ',0.22)');
             ringArc(proj, [pf[0], 0.03, pf[2]], 0.15, 0, Math.PI, 'rgba(194,94,62,0.30)');
             for (i = 0; i < 4; i++) {
                 var ta = i * TAU / 4;
@@ -513,11 +525,11 @@
 
             /* workstation front layer: the elevated top-ring arcs and the
                near rim tick pass in front of a seated cube */
-            ringArc(proj, [pf[0], 0.03, pf[2]], 0.15, Math.PI, TAU, 'rgba(20,20,19,0.22)');
+            ringArc(proj, [pf[0], 0.03, pf[2]], 0.15, Math.PI, TAU, 'rgba(' + INK + ',0.22)');
             ringArc(proj, [pf[0], 0.03, pf[2]], 0.15, Math.PI, TAU, 'rgba(194,94,62,0.30)');
             a = proj([pf[0] + Math.cos(0.75 * TAU) * 0.16, 0, pf[2] + Math.sin(0.75 * TAU) * 0.16]);
             b = proj([pf[0] + Math.cos(0.75 * TAU) * 0.15, 0.03, pf[2] + Math.sin(0.75 * TAU) * 0.15]);
-            line(a, b, 'rgba(20,20,19,0.22)', 1);
+            line(a, b, 'rgba(' + INK + ',0.22)', 1);
 
             /* floor point-cloud: faint ink dots that flare coral when
                the sweep beam passes over them */
@@ -525,7 +537,7 @@
             for (i = 0; i < cloud.length; i++) {
                 var cp = cloud[i];
                 var sp = proj([cp.r * Math.cos(cp.a), 0, cp.r * Math.sin(cp.a)]);
-                ctx.fillStyle = 'rgba(20,20,19,0.07)';
+                ctx.fillStyle = 'rgba(' + INK + ',0.07)';
                 ctx.beginPath();
                 ctx.arc(sp[0], sp[1], Math.max(1.0 * sp[2] * cp.s, 0.6), 0, TAU);
                 ctx.fill();
@@ -605,14 +617,14 @@
             var ppu = proj.scale;
 
             /* flared base pedestal + mounting bolts on the base plate */
-            ring3(proj, [0, 0, 0], 0.16, 'rgba(20,20,19,0.26)');
-            ring3(proj, [0, 0.10, 0], 0.115, 'rgba(20,20,19,0.24)');
-            line(proj([0.16, 0, 0]), proj([0.115, 0.10, 0]), 'rgba(20,20,19,0.24)', 1);
-            line(proj([-0.16, 0, 0]), proj([-0.115, 0.10, 0]), 'rgba(20,20,19,0.24)', 1);
+            ring3(proj, [0, 0, 0], 0.16, 'rgba(' + INK + ',0.26)');
+            ring3(proj, [0, 0.10, 0], 0.115, 'rgba(' + INK + ',0.24)');
+            line(proj([0.16, 0, 0]), proj([0.115, 0.10, 0]), 'rgba(' + INK + ',0.24)', 1);
+            line(proj([-0.16, 0, 0]), proj([-0.115, 0.10, 0]), 'rgba(' + INK + ',0.24)', 1);
             for (i = 0; i < 4; i++) {
                 var bang = Math.PI / 4 + i * Math.PI / 2;
                 var bp = proj([Math.cos(bang) * 0.24, 0, Math.sin(bang) * 0.24]);
-                ctx.fillStyle = 'rgba(20,20,19,0.22)';
+                ctx.fillStyle = 'rgba(' + INK + ',0.22)';
                 ctx.beginPath();
                 ctx.arc(bp[0], bp[1], Math.max(1.3 * bp[2], 0.8), 0, TAU);
                 ctx.fill();
@@ -624,21 +636,21 @@
             var pts2 = [col0, P[1], P[2], P[3], P[4]];
             for (i = 0; i < 4; i++) {
                 var la = pts2[i], lb = pts2[i + 1];
-                var ls = 'rgba(20,20,19,' + (0.17 + 0.14 * (la[2] + lb[2]) / 2).toFixed(3) + ')';
+                var ls = 'rgba(' + INK + ',' + (0.17 + 0.14 * (la[2] + lb[2]) / 2).toFixed(3) + ')';
                 var nn = capsule(la, lb, HW[i][0] * la[2] * ppu, HW[i][1] * lb[2] * ppu, ls, 1.2, i === 3);
                 if (nn && (i === 1 || i === 2)) {
                     struts(la, lb, HW[i][0] * la[2] * ppu, HW[i][1] * lb[2] * ppu, nn,
-                        'rgba(20,20,19,' + (0.10 + 0.08 * (la[2] + lb[2]) / 2).toFixed(3) + ')');
+                        'rgba(' + INK + ',' + (0.10 + 0.08 * (la[2] + lb[2]) / 2).toFixed(3) + ')');
                 }
             }
 
             /* joint housings + shoulder/elbow angle indicator arcs */
             var JR = [0, 0.072, 0.058, 0.045];
             for (i = 1; i <= 3; i++) {
-                housing(P[i], JR[i] * P[i][2] * ppu, 'rgba(20,20,19,' + (0.20 + 0.12 * P[i][2]).toFixed(3) + ')');
+                housing(P[i], JR[i] * P[i][2] * ppu, 'rgba(' + INK + ',' + (0.20 + 0.12 * P[i][2]).toFixed(3) + ')');
             }
-            angleArc(P[1], P[0], P[2], JR[1] * P[1][2] * ppu * 1.45, 'rgba(20,20,19,0.20)');
-            angleArc(P[2], P[1], P[3], JR[2] * P[2][2] * ppu * 1.45, 'rgba(20,20,19,0.18)');
+            angleArc(P[1], P[0], P[2], JR[1] * P[1][2] * ppu * 1.45, 'rgba(' + INK + ',0.20)');
+            angleArc(P[2], P[1], P[3], JR[2] * P[2][2] * ppu * 1.45, 'rgba(' + INK + ',0.18)');
 
             /* articulated coral gripper */
             drawGripper(proj, p4, arm.d3, arm.lat, ap);
