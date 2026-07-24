@@ -145,20 +145,48 @@ h1, h2, h3 {
 .topnav a:hover { color: var(--coral-deep); text-decoration: none; }
 .topnav a:hover::after { transform: scaleX(1); }
 
-/* theme toggle sits inside .topnav on every page */
+/* theme toggle sits inside .topnav on every page:
+   bordered icon chip; sun/moon morph on theme change */
 .theme-toggle {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    font-weight: 500;
-    letter-spacing: .14em;
-    text-transform: uppercase;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--panel);
     color: var(--ink-2);
-    background: none;
-    border: none;
-    padding: 4px 0;
     cursor: pointer;
+    overflow: hidden;
+    transition: border-color .25s ease, color .25s ease, box-shadow .25s ease;
 }
-.theme-toggle:hover { color: var(--coral-deep); }
+.theme-toggle:hover {
+    border-color: var(--coral);
+    color: var(--coral-deep);
+    box-shadow: 0 6px 20px rgba(217, 119, 87, .18);
+}
+
+.theme-toggle svg {
+    position: absolute;
+    transition: transform .5s cubic-bezier(.6, -.3, .3, 1.4), opacity .3s ease;
+}
+
+/* light mode: moon shows (click → dark); dark mode: sun shows */
+.theme-toggle .icon-sun { transform: rotate(-90deg) scale(.3); opacity: 0; }
+.theme-toggle .icon-moon { transform: rotate(0) scale(1); opacity: 1; }
+html[data-theme="dark"] .theme-toggle .icon-sun { transform: rotate(0) scale(1); opacity: 1; }
+html[data-theme="dark"] .theme-toggle .icon-moon { transform: rotate(90deg) scale(.3); opacity: 0; }
+
+/* circular reveal driven by startViewTransition (unsupported → instant) */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2147483646; }
 
 /* ---------------- Shared bits ---------------- */
 
@@ -941,11 +969,6 @@ html[data-theme="dark"] {
 html[data-theme="dark"] .topbar { background: rgba(25, 24, 23, .82); }
 html[data-theme="dark"] .ticker { background: rgba(34, 33, 30, .55); }
 html[data-theme="dark"] .news-list li:hover { background: rgba(34, 33, 30, .85); }
-
-/* smooth theme swap */
-body, .topbar, .ticker {
-    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
-}
 
 /* ---------------- Reveal animation ---------------- */
 

@@ -29,21 +29,40 @@
             });
     });
 
-    /* ---------- theme toggle ---------- */
+    /* ---------- theme toggle (icon morph + circular reveal) ---------- */
 
     function initThemeToggle() {
         var btn = document.getElementById('theme-toggle');
         if (!btn) return;
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         var sync = function () {
             var dark = document.documentElement.dataset.theme === 'dark';
-            btn.textContent = dark ? '[ Light ]' : '[ Dark ]';
             btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+            btn.setAttribute('aria-label', btn.title);
+            btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
         };
-        btn.addEventListener('click', function () {
+
+        btn.addEventListener('click', function (e) {
             var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-            document.documentElement.dataset.theme = next;
-            localStorage.setItem('blog-theme', next);
-            sync();
+            var apply = function () {
+                document.documentElement.dataset.theme = next;
+                localStorage.setItem('blog-theme', next);
+                sync();
+            };
+            if (reduceMotion || !document.startViewTransition) {
+                apply();
+                return;
+            }
+            var x = e.clientX, y = e.clientY;
+            var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+            var vt = document.startViewTransition(apply);
+            vt.ready.then(function () {
+                document.documentElement.animate(
+                    { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)'] },
+                    { duration: 550, easing: 'cubic-bezier(.4, 0, .2, 1)', pseudoElement: '::view-transition-new(root)' }
+                );
+            }).catch(function () { /* transition skipped */ });
         });
         sync();
     }
