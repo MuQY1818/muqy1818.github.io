@@ -55,23 +55,40 @@
                 return;
             }
             var x = e.clientX, y = e.clientY;
-            var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 180;
+            var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 360;
             var root = document.documentElement;
             root.style.setProperty('--tx', x + 'px');
             root.style.setProperty('--ty', y + 'px');
-            var vt = document.startViewTransition(apply);
+            // freeze live motion (canvas, videos, CSS animations) so the page
+            // matches the static snapshot when the pseudo tree is torn down
+            root.classList.add('vt-frozen');
+            document.dispatchEvent(new CustomEvent('vt:freeze'));
+            var vt = document.startViewTransition(function () {
+                apply();
+                // repaint the canvas with the new palette before the capture
+                return Promise.resolve().then(function () {
+                    document.dispatchEvent(new CustomEvent('vt:repaint'));
+                });
+            });
             vt.ready.then(function () {
                 // easeInOutCubic: perceptible sweep, soft start and landing;
-                // feathered mask edge in academic.css; brief fade-in kills the pop
+                // feathered mask edge in academic.css; brief fade-in kills the pop.
+                // fill:forwards is required — without it --reveal-r snaps back
+                // to 0 at the end and the old theme flashes for a frame.
                 root.animate(
                     { '--reveal-r': ['0px', radius + 'px'] },
-                    { duration: 850, easing: 'cubic-bezier(.65, 0, .35, 1)', pseudoElement: '::view-transition-new(root)' }
+                    { duration: 850, easing: 'cubic-bezier(.65, 0, .35, 1)', fill: 'forwards', pseudoElement: '::view-transition-new(root)' }
                 );
                 root.animate(
                     { opacity: [0, 1] },
-                    { duration: 260, easing: 'ease-out', pseudoElement: '::view-transition-new(root)' }
+                    { duration: 260, easing: 'ease-out', fill: 'forwards', pseudoElement: '::view-transition-new(root)' }
                 );
             }).catch(function () { /* transition skipped */ });
+            var unfreeze = function () {
+                root.classList.remove('vt-frozen');
+                document.dispatchEvent(new CustomEvent('vt:unfreeze'));
+            };
+            vt.finished.then(unfreeze, unfreeze);
         });
         sync();
     }

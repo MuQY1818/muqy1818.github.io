@@ -983,6 +983,14 @@ html[data-theme="dark"] .topbar { background: rgba(25, 24, 23, .82); }
 html[data-theme="dark"] .ticker { background: rgba(34, 33, 30, .55); }
 html[data-theme="dark"] .news-list li:hover { background: rgba(34, 33, 30, .85); }
 
+/* while a theme view-transition runs: CSS animations pause at their
+   captured phase and every CSS transition snaps instantly, so the live
+   page is pixel-identical to the static snapshot at teardown (no flash) */
+html.vt-frozen *, html.vt-frozen *::before, html.vt-frozen *::after {
+    animation-play-state: paused !important;
+    transition: none !important;
+}
+
 /* ---------------- Reveal animation ---------------- */
 
 .reveal {
