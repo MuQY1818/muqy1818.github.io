@@ -983,6 +983,43 @@ html[data-theme="dark"] .topbar { background: rgba(25, 24, 23, .82); }
 html[data-theme="dark"] .ticker { background: rgba(34, 33, 30, .55); }
 html[data-theme="dark"] .news-list li:hover { background: rgba(34, 33, 30, .85); }
 
+/* ---------------- Paper grain & mouse spotlight ---------------- */
+
+/* faint SVG-noise tooth over the whole page — the "physical paper" feel;
+   inverted to light speckle in dark mode */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: .035;
+}
+
+html[data-theme="dark"] body::before {
+    filter: invert(1);
+    opacity: .045;
+}
+
+/* page-level warm glow following the pointer (--mx/--my set from JS);
+   sunlight pool on cream paper, moonlight pool in dark mode */
+#spotlight {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    background: radial-gradient(560px circle at var(--mx, 50%) var(--my, 30%), rgba(255, 247, 222, .7), transparent 70%);
+}
+
+html[data-theme="dark"] #spotlight {
+    background: radial-gradient(640px circle at var(--mx, 50%) var(--my, 30%), rgba(255, 232, 200, .075), transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+    #spotlight { display: none; }
+}
+
 /* ---------------- Reveal animation ---------------- */
 
 .reveal {

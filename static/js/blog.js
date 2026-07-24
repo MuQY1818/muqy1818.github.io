@@ -6,6 +6,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         initThemeToggle();
+        initSpotlight();
 
         var wantsList = document.getElementById('posts-grid');
         var wantsRecent = document.getElementById('recent-posts');
@@ -75,6 +76,30 @@
             }).catch(function () { /* transition skipped */ });
         });
         sync();
+    }
+
+    /* ---------- mouse spotlight (page-level warm glow) ---------- */
+
+    function initSpotlight() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+        var spot = document.createElement('div');
+        spot.id = 'spotlight';
+        spot.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(spot);
+        var sx = -1000, sy = -1000, queued = false;
+        document.addEventListener('pointermove', function (e) {
+            sx = e.clientX;
+            sy = e.clientY;
+            if (!queued) {
+                queued = true;
+                requestAnimationFrame(function () {
+                    queued = false;
+                    spot.style.setProperty('--mx', sx + 'px');
+                    spot.style.setProperty('--my', sy + 'px');
+                });
+            }
+        }, { passive: true });
     }
 
     /* ---------- blog list page ---------- */
