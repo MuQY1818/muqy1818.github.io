@@ -211,20 +211,9 @@
             var root = document.documentElement;
             root.style.setProperty('--tx', x + 'px');
             root.style.setProperty('--ty', y + 'px');
-            // freeze live motion (canvas, videos, CSS animations) so the page
-            // matches the static snapshot when the pseudo tree is torn down
-            root.classList.add('vt-frozen');
-            document.dispatchEvent(new CustomEvent('vt:freeze'));
-            var vt = document.startViewTransition(function () {
-                apply();
-                // repaint the canvas with the new palette before the capture
-                return Promise.resolve().then(function () {
-                    document.dispatchEvent(new CustomEvent('vt:repaint'));
-                });
-            });
+            var vt = document.startViewTransition(apply);
             vt.ready.then(function () {
-                // easeInOutCubic: perceptible sweep, soft start and landing;
-                // feathered mask edge in academic.css; brief fade-in kills the pop.
+                // easeInOutCubic sweep + feathered mask edge (academic.css).
                 // fill:forwards is required — without it --reveal-r snaps back
                 // to 0 at the end and the old theme flashes for a frame.
                 root.animate(
@@ -236,11 +225,6 @@
                     { duration: 260, easing: 'ease-out', fill: 'forwards', pseudoElement: '::view-transition-new(root)' }
                 );
             }).catch(function () { /* transition skipped */ });
-            var unfreeze = function () {
-                root.classList.remove('vt-frozen');
-                document.dispatchEvent(new CustomEvent('vt:unfreeze'));
-            };
-            vt.finished.then(unfreeze, unfreeze);
         });
         sync();
     }

@@ -30,40 +30,12 @@
         SHADE = darkTheme ? '0,0,0' : '20,20,19';
     }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    /* theme view-transition freeze: ::view-transition-new is a static
-       snapshot, so any live motion (canvas, videos, typewriter, CSS
-       animations) would visibly jump when the pseudo tree is torn down.
-       The theme toggle (blog.js / post.js) dispatches vt:freeze /
-       vt:repaint / vt:unfreeze around startViewTransition; blocks below
-       register hooks so the live page stays pixel-identical to the
-       snapshot for the whole transition. */
-    var motionHooks = { freeze: [], repaint: [], unfreeze: [] };
-    function runHooks(kind) { motionHooks[kind].forEach(function (fn) { fn(); }); }
-    document.addEventListener('vt:freeze', function () {
-        runHooks('freeze');
-        document.querySelectorAll('video').forEach(function (v) {
-            if (!v.paused) { v.pause(); v.dataset.vtResume = '1'; }
-        });
-    });
-    document.addEventListener('vt:repaint', function () { runHooks('repaint'); });
-    document.addEventListener('vt:unfreeze', function () {
-        runHooks('unfreeze');
-        document.querySelectorAll('video').forEach(function (v) {
-            if (v.dataset.vtResume) {
-                delete v.dataset.vtResume;
-                var p = v.play();
-                if (p) p.catch(function () {});
-            }
-        });
-    });
-
     /* ---------- 1. Robot-arm pick-and-place + LiDAR perception canvas ---------- */
     var canvas = document.getElementById('bg-canvas');
     if (canvas && !reduceMotion) {
         var ctx = canvas.getContext('2d');
         var dpr = Math.min(window.devicePixelRatio || 1, 2);
         var W = 0, H = 0, raf = null;
-        var frozen = false, frozenAt = 0;
         var TILT = 0.32;
         var t0 = Math.random() * 100;
 
@@ -468,7 +440,7 @@
         function step() {
             /* fully faded out (scrolled past the hero): keep the loop alive
                but draw nothing */
-            if (fadeNow <= 0) { schedule(); return; }
+            if (fadeNow <= 0) { raf = requestAnimationFrame(step); return; }
             ctx.clearRect(0, 0, W, H);
             var t = (performance.now() / 1000 + t0);
             var tc = t % CYCLE;
@@ -695,31 +667,13 @@
             ctx.arc(ee[0], ee[1], 9 + 2.5 * Math.sin(t * 2.2), 0, TAU);
             ctx.stroke();
 
-            schedule();
+            raf = requestAnimationFrame(step);
         }
-
-        function schedule() { raf = frozen ? null : requestAnimationFrame(step); }
 
         function setRunning(on) {
             if (on && raf === null) raf = requestAnimationFrame(step);
             else if (!on && raf !== null) { cancelAnimationFrame(raf); raf = null; }
         }
-
-        /* freeze hooks: stop the loop and the animation clock (t derives from
-           performance.now(), so the epoch is shifted on resume); repaint once
-           so the canvas already wears the new palette when the VT snapshot is
-           captured */
-        motionHooks.freeze.push(function () {
-            frozen = true;
-            frozenAt = performance.now();
-            setRunning(false);
-        });
-        motionHooks.repaint.push(function () { if (frozen) step(); });
-        motionHooks.unfreeze.push(function () {
-            frozen = false;
-            t0 += (performance.now() - frozenAt) / 1000;
-            setRunning(true);
-        });
 
         /* scroll-driven fade: the scene is a hero background — full opacity
            at the top, linear fade from 0.3x to 1.0x viewport height so it
@@ -769,7 +723,6 @@
             } else {
                 var TYPE_MS = 55, HOLD_MS = 1600, DELETE_MS = 28;
                 var pi = 0, pos = 0, mode = 'typing';
-                var typerTimer = null, typerFrozen = false;
                 /* start from whatever text is already rendered */
                 var initial = typer.textContent;
                 var hit = phrases.indexOf(initial);
@@ -781,7 +734,6 @@
                     typer.textContent = '';
                 }
                 var tickTyper = function () {
-                    if (typerFrozen) { typerTimer = null; return; }
                     var cur = phrases[pi];
                     var delay;
                     if (mode === 'typing') {
@@ -801,17 +753,9 @@
                             delay = TYPE_MS;
                         } else delay = DELETE_MS;
                     }
-                    typerTimer = setTimeout(tickTyper, delay);
+                    setTimeout(tickTyper, delay);
                 };
-                typerTimer = setTimeout(tickTyper, mode === 'holding' ? HOLD_MS : 600);
-                motionHooks.freeze.push(function () {
-                    typerFrozen = true;
-                    if (typerTimer !== null) { clearTimeout(typerTimer); typerTimer = null; }
-                });
-                motionHooks.unfreeze.push(function () {
-                    typerFrozen = false;
-                    if (typerTimer === null) typerTimer = setTimeout(tickTyper, 60);
-                });
+                setTimeout(tickTyper, mode === 'holding' ? HOLD_MS : 600);
             }
         }
         /* no valid phrases: keep the server-rendered initial text */
