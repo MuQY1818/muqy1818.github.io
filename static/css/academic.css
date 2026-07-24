@@ -179,14 +179,27 @@ h1, h2, h3 {
 html[data-theme="dark"] .theme-toggle .icon-sun { transform: rotate(0) scale(1); opacity: 1; }
 html[data-theme="dark"] .theme-toggle .icon-moon { transform: rotate(90deg) scale(.3); opacity: 0; }
 
-/* circular reveal driven by startViewTransition (unsupported → instant) */
+/* circular reveal driven by startViewTransition (unsupported → instant).
+   Soft feathered edge: a registered --reveal-r custom property is animated
+   from JS; the mask keeps a 140px transparent falloff so the boundary
+   sweeps smoothly instead of cutting. */
+@property --reveal-r {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
 }
 ::view-transition-old(root) { z-index: 1; }
-::view-transition-new(root) { z-index: 2147483646; }
+::view-transition-new(root) {
+    z-index: 2147483646;
+    -webkit-mask-image: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%), black calc(var(--reveal-r, 0px) - 180px), transparent var(--reveal-r, 0px));
+    mask-image: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%), black calc(var(--reveal-r, 0px) - 180px), transparent var(--reveal-r, 0px));
+}
 
 /* ---------------- Shared bits ---------------- */
 

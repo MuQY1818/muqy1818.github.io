@@ -207,12 +207,21 @@
                 return;
             }
             var x = e.clientX, y = e.clientY;
-            var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+            var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 180;
+            var root = document.documentElement;
+            root.style.setProperty('--tx', x + 'px');
+            root.style.setProperty('--ty', y + 'px');
             var vt = document.startViewTransition(apply);
             vt.ready.then(function () {
-                document.documentElement.animate(
-                    { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)'] },
-                    { duration: 550, easing: 'cubic-bezier(.4, 0, .2, 1)', pseudoElement: '::view-transition-new(root)' }
+                // easeInOutCubic: perceptible sweep, soft start and landing;
+                // feathered mask edge in academic.css; brief fade-in kills the pop
+                root.animate(
+                    { '--reveal-r': ['0px', radius + 'px'] },
+                    { duration: 850, easing: 'cubic-bezier(.65, 0, .35, 1)', pseudoElement: '::view-transition-new(root)' }
+                );
+                root.animate(
+                    { opacity: [0, 1] },
+                    { duration: 260, easing: 'ease-out', pseudoElement: '::view-transition-new(root)' }
                 );
             }).catch(function () { /* transition skipped */ });
         });
