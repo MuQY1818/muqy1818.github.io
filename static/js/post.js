@@ -6,7 +6,7 @@
 
     function init() {
         initThemeToggle();
-        initSpotlight();
+        initCursor();
         initProgressBar();
 
         var slug = new URLSearchParams(location.search).get('p');
@@ -230,28 +230,58 @@
         sync();
     }
 
-    /* ---------- mouse spotlight (page-level warm glow) ---------- */
+    /* ---------- custom cursor (coral dot + lagging reticle ring) ---------- */
 
-    function initSpotlight() {
+    function initCursor() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (!window.matchMedia('(pointer: fine)').matches) return;
-        var spot = document.createElement('div');
-        spot.id = 'spotlight';
-        spot.setAttribute('aria-hidden', 'true');
-        document.body.appendChild(spot);
-        var sx = -1000, sy = -1000, queued = false;
+
+        document.documentElement.classList.add('fancy-cursor');
+
+        var dot = document.createElement('div');
+        dot.id = 'cursor-dot';
+        var ring = document.createElement('div');
+        ring.id = 'cursor-ring';
+        dot.setAttribute('aria-hidden', 'true');
+        ring.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(dot);
+        document.body.appendChild(ring);
+
+        var x = -100, y = -100, rx = -100, ry = -100, shown = false;
         document.addEventListener('pointermove', function (e) {
-            sx = e.clientX;
-            sy = e.clientY;
-            if (!queued) {
-                queued = true;
-                requestAnimationFrame(function () {
-                    queued = false;
-                    spot.style.setProperty('--mx', sx + 'px');
-                    spot.style.setProperty('--my', sy + 'px');
-                });
+            x = e.clientX;
+            y = e.clientY;
+            dot.style.transform = 'translate(' + (x - 3) + 'px, ' + (y - 3) + 'px)';
+            if (!shown) {
+                shown = true;
+                dot.classList.add('is-visible');
+                ring.classList.add('is-visible');
             }
         }, { passive: true });
+
+        /* ring trails the pointer with a soft lerp */
+        (function follow() {
+            rx += (x - rx) * 0.16;
+            ry += (y - ry) * 0.16;
+            ring.style.transform = 'translate(' + (rx - 15) + 'px, ' + (ry - 15) + 'px)';
+            requestAnimationFrame(follow);
+        })();
+
+        document.addEventListener('pointerover', function (e) {
+            var interactive = e.target.closest('a, button, [role="button"], input, textarea, select, label');
+            ring.classList.toggle('is-hover', !!interactive);
+            /* native I-beam is kept in text fields — hide the custom pair there */
+            var texty = e.target.closest('input, textarea, [contenteditable]');
+            dot.classList.toggle('is-visible', !texty);
+            ring.classList.toggle('is-visible', !texty);
+        }, { passive: true });
+
+        document.addEventListener('pointerdown', function () { ring.classList.add('is-down'); });
+        document.addEventListener('pointerup', function () { ring.classList.remove('is-down'); });
+        document.documentElement.addEventListener('pointerleave', function () {
+            dot.classList.remove('is-visible');
+            ring.classList.remove('is-visible');
+        });
     }
 
     /* ---------- helpers ---------- */
