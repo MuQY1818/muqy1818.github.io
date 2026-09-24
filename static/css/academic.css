@@ -464,7 +464,7 @@ html[data-theme="dark"] .affiliation-marks .teai-mark-dark { display: block; }
     margin: 34px 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     border-top: 1px solid var(--line);
     /* span the full hero width from inside the text column:
        column = (wrap - gap) * 1.15/2  =>  full = column * 2/1.15 + gap */
