@@ -1,5 +1,12 @@
 # Project Update Notes
 
+## 2026-09-24
+
+- Announced admission to Fudan TEAI (incoming graduate student) across the homepage: hero eyebrow → "Incoming Graduate Student @ Fudan TEAI", a new `.affiliation-marks` logo strip between the eyebrow and the name, bio rewritten to lead with the incoming status (CUMT undergrad rank and Tsinghua SIGS internship preserved as current), a `Fudan TEAI · Incoming` fact chip (hot-styled), one typewriter phrase replaced with `INCOMING @ FUDAN TEAI`, and a 2026.09 news item linking `teai.fudan.edu.cn`.
+- Official logos added under `static/assets/img/affiliations/`: `fudan-emblem.png` (Fudan University standard blue emblem, cropped 224×224 from the official 校徽 plate at fudan.edu.cn/451), `teai-logo.svg` + `teai-logo-white.svg` (TEAI's own horizontal marks from teai.fudan.edu.cn). The TEAI mark swaps to the white version under `html[data-theme="dark"]` via two `<img>`s toggled in CSS — NOT `<picture media>`, because the site's theme is a localStorage attribute and `prefers-color-scheme` would not follow it.
+- Logos are local assets rather than remote hotlinks; GitHub profile README uses the same two files under `assets/`.
+- Known pre-existing issue, not fixed here: at ≤320px viewports `.topnav` overflows horizontally (GitHub link + theme toggle clipped); unrelated to this update.
+
 ## 2026-07-24
 
 - Dark mode is now site-wide (previously blog-only): the palette redefinitions + `.theme-toggle` rule moved from `blog.css` into `academic.css` (blog.css keeps only blog components); hard-coded light tints overridden under `html[data-theme="dark"]` are `.topbar`, `.ticker`, `.news-list li:hover`. The `[ Dark ]` toggle lives in the topnav on every page (same localStorage key `blog-theme`, same inline pre-paint script).
