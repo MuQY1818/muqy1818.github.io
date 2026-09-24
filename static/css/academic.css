@@ -276,6 +276,22 @@ html[data-theme="dark"] .theme-toggle .icon-moon { transform: rotate(90deg) scal
     overflow: visible;
 }
 
+.affiliation-marks {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 0 0 18px;
+}
+
+.affiliation-marks a { display: inline-flex; align-items: center; max-width: 100%; }
+.affiliation-marks img { display: block; max-width: 100%; height: auto; }
+.affiliation-marks .fudan-mark { width: 48px; }
+.affiliation-marks .teai-mark { width: min(368px, 100%); }
+.affiliation-marks .teai-mark-dark { display: none; }
+html[data-theme="dark"] .affiliation-marks .teai-mark-light { display: none; }
+html[data-theme="dark"] .affiliation-marks .teai-mark-dark { display: block; }
+
 .name {
     font-family: var(--font-kai);
     font-size: clamp(3.2rem, 7.5vw, 5.2rem);
