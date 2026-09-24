@@ -286,7 +286,6 @@ html[data-theme="dark"] .theme-toggle .icon-moon { transform: rotate(90deg) scal
 
 .affiliation-marks a { display: inline-flex; align-items: center; max-width: 100%; }
 .affiliation-marks img { display: block; max-width: 100%; height: auto; }
-.affiliation-marks .fudan-mark { width: 48px; }
 .affiliation-marks .teai-mark { width: min(368px, 100%); }
 .affiliation-marks .teai-mark-dark { display: none; }
 html[data-theme="dark"] .affiliation-marks .teai-mark-light { display: none; }
