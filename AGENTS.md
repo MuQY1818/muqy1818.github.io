@@ -1,5 +1,9 @@
 # Project Update Notes
 
+## 2026-09-25
+
+- Added the user's two current research directions across homepage and profile README (user phrasing: "具身智能的 RSI" + "Agentic Embodied AI", i.e. VLM-driven robots doing manipulation; RSI read as recursive self-improvement): homepage sidebar `.side-focus` now reads "Focusing on RSI (recursive self-improvement) in Embodied AI and Agentic Embodied AI — VLM-driven robotic manipulation.", a third bio paragraph states the current focus with both directions bolded, and the README Research section gained the same sentence as its second paragraph. "RSI" is deliberately spelled out on first use — in English contexts bare "RSI" can misread; keep the expansion.
+
 ## 2026-09-24
 
 - Homepage fully redesigned per user request (reference: bighuang624.github.io, an academicpages-style Jekyll site, "现在的主页有点花里胡哨"): `index.html` rewritten as a static academic page — slim top nav, left sidebar (GitHub avatar, name, role, contact links with feather icons, WeChat line, TEAI logo), main column (bio, News, Publications grouped into Peer-reviewed Conference / Journal / Preprints & Under Review, Awards & Honors). New `static/css/home.css`; ZERO JavaScript — no canvas, typewriter, ticker, video feeds, tilt, fancy cursor or metric counters; light-only (homepage drops the dark toggle; blog/post pages keep academic.css + their own dark mode, so `academic.css` and `home.js` remain in the repo but `index.html` no longer references `home.js`). This also removes the old ≤320px topnav overflow noted below.
