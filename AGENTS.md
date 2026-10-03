@@ -1,5 +1,9 @@
 # Project Update Notes
 
+## 2026-10-03
+
+- Added the National Scholarship (2025–2026 academic year, undergraduate) to homepage News (2026.10 entry, top) and Awards (top), and to the profile README's News and Honors. English rendering: "National Scholarship (2025–2026 academic year)" — dated 2026.10 when the award notice arrived.
+
 ## 2026-09-25
 
 - Synced ChainVLA's title with the current ICLR resubmission (source: `iclr2027/main.tex` in the Obsidian paper vault, title `\title{ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation}`): homepage publication entry and the profile README both switched from the old "Chaining Task Progress and Motion Intent Across VLA Queries". Still shows "Under review" only — the submission venue stays hidden on public pages until acceptance (standing double-blind rule from 2026-07-19 v3).
