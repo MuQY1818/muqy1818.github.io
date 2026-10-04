@@ -7,7 +7,7 @@
     <meta name="description" content="Academic homepage of Weijue Bu — incoming graduate student at the Institute of Trustworthy Embodied Artificial Intelligence (TEAI), Fudan University. Research in spatial intelligence, embodied AI, and long-horizon robotic manipulation.">
     <meta name="author" content="Weijue Bu">
     <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico">
-    <link rel="stylesheet" href="static/css/home.css?v=2">
+    <link rel="stylesheet" href="static/css/home.css?v=3">
 </head>
 <body>
 
@@ -105,7 +105,9 @@
 
                 <div class="pub has-thumb">
                     <a class="pub-thumb" href="https://robostream123.github.io/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                        <img src="static/assets/img/Papers/thumbs/robostream.jpg" alt="" width="560" height="315" loading="lazy">
+                        <video src="static/assets/videos/robostream_thumb.mp4"
+                               poster="static/assets/img/Papers/thumbs/robostream.jpg"
+                               width="560" height="316" autoplay muted loop playsinline preload="metadata"></video>
                     </a>
                     <div class="pub-body">
                         <span class="pub-title">RoboStream: Weaving Spatio-Temporal Reasoning with Memory in Vision-Language Models for Robotics</span><br>
@@ -185,6 +187,17 @@
     </footer>
 
 </div>
+
+<script>
+    /* the only script on the page: an auto-playing, looping teaser would
+       violate prefers-reduced-motion, so fall back to its poster frame */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('video[autoplay]').forEach(function (v) {
+            v.removeAttribute('autoplay');
+            v.pause();
+        });
+    }
+</script>
 
 </body>
 </html>
