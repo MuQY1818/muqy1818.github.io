@@ -1,5 +1,11 @@
 # Project Update Notes
 
+## 2026-10-04
+
+- Publication entries now carry a teaser thumbnail on the left (reference: the user's screenshot of an academic-group site; "把论文的视频或者图片放在前面"). New `static/assets/img/Papers/thumbs/*.jpg` (560px wide, ~25-46KB): `robostream.jpg` from `videos/poster_overview.jpg`, `cgvlm.jpg` cropped from `CG-VLM.png` (645,368)-(1238,645), `calo.jpg` and `chainvla.jpg` cropped from their sharp letterbox bands — `CALO.png` (71,412)-(965,831) and `ChainVLA.png` (52,396)-(947,863). ChainVLA/CALO were composed earlier with a blurred portrait letterbox; the detector used `max(row gradient) * 0.18` on a grayscale difference to find the sharp band.
+- Layout: `.pub.has-thumb` is a `208px + 1fr` grid; entries with no usable figure keep the full-width text layout — PiN-Mod has no teaser anywhere (its `PiN-Mod.png` is a text-only page; a saturation scan found only green citation boxes), so do not force a thumbnail there. Thumbnails are decorative (`alt=""`, `aria-hidden`, `tabindex="-1"`) and link to the paper's primary link so screen readers do not hear them twice.
+- Original `Papers/*.png` are kept: `posts/hello-blog.md` still embeds `RoboStream.png`.
+
 ## 2026-10-03
 
 - Added the National Scholarship (2025–2026 academic year, undergraduate) to homepage News (2026.10 entry, top) and Awards (top), and to the profile README's News and Honors. English rendering: "National Scholarship (2025–2026 academic year)" — dated 2026.10 when the award notice arrived.

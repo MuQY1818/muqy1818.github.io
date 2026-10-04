@@ -190,6 +190,31 @@ b { color: var(--ink-strong); font-weight: 600; }
     line-height: 1.55;
 }
 
+/* entries that carry a teaser thumbnail sit in a thumbnail + text grid;
+   entries without one (no figure available) stay full width */
+.pub.has-thumb {
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 22px;
+}
+
+.pub-thumb {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f6f7f8;
+    line-height: 0;
+}
+
+.pub-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .pub-title { color: var(--ink-strong); font-weight: 600; }
 
 .pub-authors { font-size: .92rem; }
@@ -277,4 +302,9 @@ b { color: var(--ink-strong); font-weight: 600; }
     .news li, .awards li { grid-template-columns: 68px minmax(0, 1fr); gap: 10px; }
     .topnav { gap: 4px 16px; }
     .topnav a { font-size: .82rem; }
+}
+
+@media (max-width: 640px) {
+    .pub.has-thumb { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .pub-thumb { max-width: 300px; }
 }
