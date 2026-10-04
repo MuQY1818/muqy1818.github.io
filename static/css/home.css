@@ -246,6 +246,47 @@ b { color: var(--ink-strong); font-weight: 600; }
     margin: 18px 0 0;
 }
 
+/* Experience */
+
+.exp-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.exp-role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-strong);
+}
+
+.exp-when {
+    font-size: .88rem;
+    color: var(--badge-ink);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.exp-org {
+    margin: 2px 0 8px;
+    font-size: .95rem;
+    color: var(--ink);
+}
+
+.exp-desc {
+    margin: 0;
+    font-size: .93rem;
+    color: var(--ink);
+}
+
+@media (max-width: 480px) {
+    .exp-head { gap: 2px; }
+    .exp-when { font-size: .84rem; }
+}
+
 /* Awards */
 
 .awards {
