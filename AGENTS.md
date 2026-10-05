@@ -1,5 +1,9 @@
 # Project Update Notes
 
+## 2026-10-05
+
+- Awards list completed against the 保研 résumé (`08-保研材料/02_申请材料/简历/Latex项目/Latex/main_chinese_boxed.tex`, 8 items): added the three that were missing — 2026.08 Second Prize, 15th "China Software Cup" Collegiate Software Design Contest (National Finals, Higher Education Group); 2025.09 15th Place, Tianchi Alibaba Mobile Recommendation Algorithm Challenge; 2025.07 Second Prize, RAICOM Jiangsu Division Programming Skills Competition. **This reverses the 2026-07-19 note that kept Tianchi/RAICOM off the homepage** — the user has since asked for the full list ("Award 好像没有写全啊"), so completeness now wins. Homepage and README Honors both carry all 10 entries in reverse-chronological order (10 = the résumé's 8 + National Scholarship + SJTU Academic Potential 1st Prize, the latter two sourced from the 保研 résumé's parent list and older résumé versions respectively).
+
 ## 2026-10-04
 
 - Removed supervisor/group attribution from the public profile per user request ("Professor Wang Zhi's Group 就不写吧，都统一不写哪个老师的组了"): homepage bio now says only "at Tsinghua Shenzhen International Graduate School"; Experience card org line is only the school (no `Prof. Zhi Wang's group`); GitHub README intro and Experience entry likewise omit the supervisor. Paper author lists still contain Zhi Wang where he is a paper co-author — that is bibliographic fact, not an internship-group affiliation, so do not remove it.
