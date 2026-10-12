@@ -5,6 +5,23 @@
    right main column (bio, news, publications, awards).
    ============================================================ */
 
+/* Self-hosted fonts (latin subsets, SIL OFL — see assets/fonts/*-OFL.txt).
+   Keeping them local means the page has no third-party font request. */
+@font-face {
+    font-family: "Newsreader";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../assets/fonts/newsreader-latin.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("../assets/fonts/inter-latin.woff2") format("woff2");
+}
+
 :root {
     --ink: #494e52;
     --ink-strong: #2b2f33;
@@ -22,9 +39,9 @@ html { scroll-behavior: smooth; }
 
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", -apple-system, sans-serif;
-    font-size: 16px;
-    line-height: 1.65;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, "Segoe UI", -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.7;
     color: var(--ink);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
@@ -79,11 +96,13 @@ b { color: var(--ink-strong); font-weight: 600; }
 }
 
 .side-name {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.95rem;
+    font-weight: 500;
     color: var(--ink-strong);
     margin: 0 0 8px;
     line-height: 1.25;
+    letter-spacing: -0.015em;
 }
 
 .side-role {
@@ -138,12 +157,14 @@ b { color: var(--ink-strong); font-weight: 600; }
 .section:last-child { margin-bottom: 0; }
 
 .section h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.42rem;
+    font-weight: 500;
     color: var(--ink-strong);
     border-bottom: 1px solid var(--line);
     padding-bottom: 8px;
     margin: 0 0 18px;
+    letter-spacing: -0.01em;
 }
 
 .bio p, .reflections p { margin: 0 0 14px; }
@@ -177,10 +198,12 @@ b { color: var(--ink-strong); font-weight: 600; }
 /* Publications */
 
 .pub-sub {
-    font-size: .98rem;
-    font-weight: 700;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--ink-strong);
     margin: 24px 0 10px;
+    letter-spacing: -0.005em;
 }
 .pub-sub:first-of-type { margin-top: 0; }
 
@@ -216,7 +239,12 @@ b { color: var(--ink-strong); font-weight: 600; }
     height: auto;
 }
 
-.pub-title { color: var(--ink-strong); font-weight: 600; }
+.pub-title {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink-strong);
+}
 
 .pub-authors { font-size: .92rem; }
 
@@ -288,8 +316,9 @@ b { color: var(--ink-strong); font-weight: 600; }
 }
 
 .exp-role {
-    font-size: 1rem;
-    font-weight: 600;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    font-weight: 500;
     color: var(--ink-strong);
 }
 
