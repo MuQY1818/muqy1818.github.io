@@ -146,8 +146,8 @@ b { color: var(--ink-strong); font-weight: 600; }
     margin: 0 0 18px;
 }
 
-.bio p { margin: 0 0 14px; }
-.bio p:last-child { margin-bottom: 0; }
+.bio p, .reflections p { margin: 0 0 14px; }
+.bio p:last-child, .reflections p:last-child { margin-bottom: 0; }
 
 /* News */
 

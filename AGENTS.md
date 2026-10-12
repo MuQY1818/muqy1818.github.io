@@ -1,5 +1,10 @@
 # Project Update Notes
 
+## 2026-10-12
+
+- Added the user-approved, English-only **Reflections** section after Awards, with a `#reflections` top-nav link. The two paragraphs describe the user's changing perspective from efficiency to intelligence, ask how experience can build lasting capability without forgetting, and connect that question to embodied AI through action and environmental evidence. Preserve the approved text; the past/present/future framing is a personal perspective rather than a universal historical claim.
+- Reused existing section headings, typography, and paragraph spacing. The reflection is ordinary prose, with no quotation styling, extra decoration, or new JavaScript. Updated the stylesheet version for the paragraph-spacing rule. The GitHub profile README was not part of this addition.
+
 ## 2026-10-07
 
 - Research focus re-stated per user request — the user judged the earlier phrasing imprecise: "我的研究 focus 应该是 我研究 Agentic Robot Learning / Embodied Reasoning 这一块可能比较准确". **Current focus is now `agentic robot learning` + `embodied reasoning`**; these two replaced `embodied foundation models` / `embodied agents` / `Agentic Embodied AI` everywhere the focus is stated (homepage `meta description`, sidebar `.side-focus`, bio interests, bio focus paragraph; README Research section). Sentence form is deliberately identical in both places: "My current focus is … — vision-language models that reason about the physical world and drive robots through long-horizon manipulation tasks."
