@@ -1,5 +1,11 @@
 # Project Update Notes
 
+## 2026-10-15
+
+- Added the user-confirmed **incoming Embodied AI Algorithm Intern at Noematrix** status to the homepage bio, News, and Experience, and the GitHub profile README. Expected start: **2026-10-26**, from the offer supplied by the user. Keep the role explicitly incoming until the user confirms starting; do not present completed contributions or assume a current employment period. Post-training is the communicated focus; no specific model, mentor, or independent research assignment has been confirmed.
+- Noematrix wordmark: official **609 × 144 PNG**, sourced from `https://www.noematrix.ai/image/common/logo.png` on the corporate homepage. Preserve original proportions and colours; the homepage displays it at 160px wide (more than 3× source density). The GitHub profile uses the same native pixels with 24px padding and a white-backed dark-theme variant for legibility. Neither is a vector or an AI-upscaled logo.
+- The new Experience entry reuses the existing typography/card layout, with a blue brand accent, spacing between entries, and a single-column layout on small screens. Existing Tsinghua emblem, research focus, approved Reflections text, and publication contents are preserved.
+
 ## 2026-10-12
 
 - Added the user-approved, English-only **Reflections** section after Awards, with a `#reflections` top-nav link. The two paragraphs describe the user's changing perspective from efficiency to intelligence, ask how experience can build lasting capability without forgetting, and connect that question to embodied AI through action and environmental evidence. Preserve the approved text; the past/present/future framing is a personal perspective rather than a universal historical claim.
