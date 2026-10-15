@@ -278,7 +278,7 @@ b { color: var(--ink-strong); font-weight: 600; }
 
 .exp-card {
     display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-columns: 160px minmax(0, 1fr);
     gap: 16px 18px;
     align-items: center;
     padding: 22px 24px;
@@ -290,8 +290,9 @@ b { color: var(--ink-strong); font-weight: 600; }
 }
 
 .exp-logo {
-    width: 96px;
-    height: 96px;
+    width: 160px;
+    max-width: 100%;
+    height: auto;
     display: block;
     object-fit: contain;
 }
@@ -299,14 +300,12 @@ b { color: var(--ink-strong); font-weight: 600; }
 .exp-card + .exp-card { margin-top: 16px; }
 
 .exp-card-noematrix {
-    grid-template-columns: 160px minmax(0, 1fr);
     border-color: #d8e6f3;
     border-left-color: var(--link);
     background: #fbfdff;
 }
 
 .exp-brand { display: block; }
-.exp-card-noematrix .exp-logo { width: 160px; max-width: 100%; height: auto; }
 .exp-card-noematrix .exp-kicker { color: var(--link); }
 
 .exp-main { min-width: 0; }
@@ -357,9 +356,7 @@ b { color: var(--ink-strong); font-weight: 600; }
 }
 
 @media (max-width: 480px) {
-    .exp-card { grid-template-columns: 80px minmax(0, 1fr); gap: 14px 12px; padding: 18px 16px; }
-    .exp-logo { width: 80px; height: 80px; }
-    .exp-card-noematrix { grid-template-columns: minmax(0, 1fr); }
+    .exp-card { grid-template-columns: minmax(0, 1fr); gap: 14px 12px; padding: 18px 16px; }
     .exp-kicker { font-size: .7rem; }
     .exp-head { gap: 2px; }
     .exp-when { font-size: .84rem; }
