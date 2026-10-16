@@ -274,6 +274,45 @@ b { color: var(--ink-strong); font-weight: 600; }
     margin: 18px 0 0;
 }
 
+/* Open-source projects */
+
+.project {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.project-icon img {
+    display: block;
+    width: 64px;
+    max-width: 100%;
+    height: auto;
+}
+
+.project-title {
+    margin: 0 0 6px;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.project-title a { color: var(--ink-strong); }
+.project-description { margin: 0 0 8px; font-size: .93rem; }
+.project-meta { margin: 0 0 6px; font-size: .8rem; color: var(--muted); }
+.project-links { margin: 0; font-size: .9rem; }
+
+@media (max-width: 480px) {
+    .project { grid-template-columns: 48px minmax(0, 1fr); gap: 10px 14px; padding: 16px; }
+    .project-icon img { width: 48px; }
+    .project-body { display: contents; }
+    .project-title { align-self: center; margin: 0; }
+    .project-body p { grid-column: 1 / -1; margin: 0; }
+}
+
 /* Experience */
 
 .exp-card {

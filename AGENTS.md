@@ -1,5 +1,10 @@
 # Project Update Notes
 
+## 2026-10-16
+
+- Added OpenYoink to a dedicated **Open Source** section between Publications and Experience, with a matching top-nav anchor and GitHub profile entry. It is the user's public MIT-licensed macOS app (`https://github.com/MuQY1818/OpenYoink`), built with SwiftUI and AppKit; describe the drag-and-drop shelf / Dynamic Island, Quick Look, optional clipboard history, and multi-display support as documented in the public README. Link to the English project website, source, and latest release. Keep research statements and publication entries unchanged.
+- The local project icon (`static/assets/img/openyoink-icon.png`, also `assets/openyoink-icon.png` in the profile) is the existing 256px app-icon PNG from `OpenYoink/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-256.png`; preserve its artwork and transparency. No remote badges or third-party asset requests are added, and no changing star/download counts are hard-coded.
+
 ## 2026-10-15
 
 - Unified both homepage Experience entries around horizontal official logos and a shared 160px brand column; text starts at the same position, and both entries stack consistently on small screens. The user explicitly requested replacing the circular Tsinghua emblem here, superseding the earlier emblem-layout note. `tsinghua-logo.svg` is the same original-colour vector used in the GitHub profile, extracted from the official VI handbook page 30 (A-3-10, emblem with horizontal Chinese/English wordmark) with its 2X clear space retained. Keep the original proportions; do not crop or recolour it.
