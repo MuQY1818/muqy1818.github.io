@@ -1,5 +1,9 @@
 # Project Update Notes
 
+## 2026-10-17
+
+- The user explicitly chose **Agentic Robotics** as the research-area label, replacing **Agentic Robot Learning**. Apply it consistently to the homepage metadata, sidebar, interests and focus paragraph, the GitHub profile README, and GitHub account bio. The paired direction remains **Embodied Reasoning**; RSI remains a long-term goal. This supersedes the terminology in the 2026-10-07 note. Use natural sentence case in prose and title case in the short GitHub bio; do not rewrite historical paper titles or imply new research results.
+
 ## 2026-10-16
 
 - The user's public contact email is now **weijue1215@163.com**, per explicit request. Both the homepage Email link and GitHub profile README mailto use this address; preserve it in future updates.
