@@ -475,6 +475,7 @@ b { color: var(--ink-strong); font-weight: 600; }
     color: #69747c;
     font-size: .72rem;
     line-height: 1.5;
+    min-height: 26px;
 }
 
 .visitor-status-dot {
@@ -486,6 +487,26 @@ b { color: var(--ink-strong); font-weight: 600; }
 }
 
 .visitors[data-state="ready"] .visitor-status-dot { background: var(--visitor-accent); }
+.visitors[data-state="cached"] .visitor-status-dot { background: #b0802f; }
+
+.visitor-retry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--link);
+    cursor: pointer;
+}
+.visitor-retry[hidden] { display: none; }
+.visitor-retry svg { width: 16px; height: 16px; }
+.visitor-retry:hover { background: var(--badge-bg); }
+.visitor-retry:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 
 .visitor-map {
     position: relative;

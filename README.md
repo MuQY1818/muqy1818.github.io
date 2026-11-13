@@ -71,9 +71,17 @@ The homepage has a visitor section above the footer and a compact sidebar link.
 `static/js/visitors.js` loads site-wide estimated visitors and page views from
 Busuanzi. Requests run only on the HTTPS production hostname,
 `muqy1818.github.io`; local files, localhost and other preview hosts do not count.
-Numbers stay unavailable when the provider is blocked, times out, or returns
-invalid data. No historical totals are reconstructed. The visitor estimate is
-not an exact count of individual people, and the world map is decorative.
+When the provider is blocked or slow, the page displays the latest successful
+reading from local storage or the same-origin `static/data/visitor-totals.json`
+snapshot, labeled with its saved date. A retry button requests fresh totals.
+Responses arriving after the 20-second soft timeout can still update the page;
+pending callbacks are cleaned up after 60 seconds. Storage is optional.
+No historical totals are reconstructed. The visitor estimate is not an exact
+count of individual people, and the world map is decorative.
+
+Refresh the published fallback with `node scripts/snapshot-visitors.mjs` before
+a release. This stores a real response and its timestamp. Run it deliberately,
+not on a schedule: the service also counts that request as an access.
 
 The map is a local SVG made from Natural Earth's public-domain v5.1.2 110m land
 polygons. To regenerate it, download `ne_110m_land.geojson` from that release and
