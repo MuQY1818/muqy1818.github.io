@@ -7,7 +7,8 @@
     <meta name="description" content="Academic homepage of Weijue Bu — embodied AI algorithm intern at Noematrix and incoming graduate student at the Institute of Trustworthy Embodied Artificial Intelligence (TEAI), Fudan University. Research in agentic robotics, embodied reasoning, and long-horizon robotic manipulation.">
     <meta name="author" content="Weijue Bu">
     <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico">
-    <link rel="stylesheet" href="static/css/home.css?v=20261016-openyoink">
+    <link rel="stylesheet" href="static/css/home.css?v=20261113-visitors">
+    <script defer src="static/js/visitors.js?v=20261113"></script>
 </head>
 <body>
 
@@ -55,6 +56,10 @@
 
             <a class="affil-logo" href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener" title="Institute of Trustworthy Embodied Artificial Intelligence, Fudan University">
                 <img src="static/assets/img/affiliations/teai-logo.svg" alt="Institute of Trustworthy Embodied Artificial Intelligence, Fudan University">
+            </a>
+            <a class="visitor-peek" href="#visitors">
+                <span>Visitors</span>
+                <span class="visitor-peek-count" data-visitor-count="site_uv">&mdash;</span>
             </a>
         </aside>
 
@@ -276,6 +281,33 @@
         </main>
     </div>
 
+    <section class="visitors" id="visitors" aria-labelledby="visitors-title" data-state="idle">
+        <div class="visitor-intro">
+            <h2 id="visitors-title">Visitors</h2>
+            <p>Thank you for stopping by.</p>
+            <p class="visitor-status" role="status">
+                <span class="visitor-status-dot" aria-hidden="true"></span>
+                <span data-visitor-status>JavaScript is required for totals</span>
+            </p>
+        </div>
+        <div class="visitor-map" aria-hidden="true">
+            <img src="static/assets/img/visitor-world.svg" alt="" width="480" height="224" loading="lazy">
+        </div>
+        <div class="visitor-totals">
+            <dl class="visitor-metrics">
+                <div>
+                    <dt>Visitors <span class="visitor-estimate">(estimated)</span></dt>
+                    <dd data-visitor-count="site_uv">&mdash;</dd>
+                </div>
+                <div>
+                    <dt>Page views</dt>
+                    <dd data-visitor-count="site_pv">&mdash;</dd>
+                </div>
+            </dl>
+            <p class="visitor-credit">Site-wide totals via <a href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">Busuanzi</a></p>
+        </div>
+    </section>
+
     <footer class="footer">
         <span>© 2026 Weijue Bu</span>
         <span><a href="https://github.com/MuQY1818/muqy1818.github.io" target="_blank" rel="noopener">Source</a></span>
@@ -284,8 +316,7 @@
 </div>
 
 <script>
-    /* the only script on the page: an auto-playing, looping teaser would
-       violate prefers-reduced-motion, so fall back to its poster frame */
+    /* Use the teaser's poster when reduced motion is requested. */
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.querySelectorAll('video[autoplay]').forEach(function (v) {
             v.removeAttribute('autoplay');

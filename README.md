@@ -64,3 +64,18 @@ Visit the live website: [https://muqy1818.github.io/](https://muqy1818.github.io
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+## Visitor totals
+
+The homepage has a visitor section above the footer and a compact sidebar link.
+`static/js/visitors.js` loads site-wide estimated visitors and page views from
+Busuanzi. Requests run only on the HTTPS production hostname,
+`muqy1818.github.io`; local files, localhost and other preview hosts do not count.
+Numbers stay unavailable when the provider is blocked, times out, or returns
+invalid data. No historical totals are reconstructed. The visitor estimate is
+not an exact count of individual people, and the world map is decorative.
+
+The map is a local SVG made from Natural Earth's public-domain v5.1.2 110m land
+polygons. To regenerate it, download `ne_110m_land.geojson` from that release and
+run `node scripts/build-visitor-map.mjs /path/to/ne_110m_land.geojson`. Production
+does not fetch map data or fonts from an external service.
