@@ -774,6 +774,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* Waving hand: two gentle waves after the greeting fades in, then rest. */
+.intro-hello .wave {
+    display: inline-block;
+    margin-left: .22em;
+    font-size: .78em;
+    transform-origin: 70% 75%;
+    animation: wave 1.4s ease-in-out .7s 1 both;
+}
+@keyframes wave {
+    0%, 60%, 100% { transform: rotate(0); }
+    10%, 30% { transform: rotate(16deg); }
+    20%, 40% { transform: rotate(-8deg); }
+}
 @keyframes hello-in {
     from { opacity: 0; transform: translateY(4px) rotate(-5deg); }
     to { opacity: 1; transform: translateY(0) rotate(-5deg); }
@@ -919,7 +932,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     html { scroll-behavior: auto; }
     .visitor-map::after { display: none; }
     .visitors.is-visible .visitor-metrics dd { animation: none; }
-    .intro-hello { animation: none; }
+    .intro-hello, .intro-hello .wave { animation: none; }
     .pub, .publication-filters button { transition: none; }
     .pub:hover { transform: none; }
 }
