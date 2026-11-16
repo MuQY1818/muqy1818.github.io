@@ -382,49 +382,39 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     white-space: nowrap;
 }
 
+/* Every paper card: a fixed media panel flush with the card's left edge,
+   a hairline divider, then the text column. Text starts at the same x on every card. */
 .pub {
     display: grid;
-    grid-template-columns: 224px minmax(0, 1fr);
-    gap: 22px;
-    align-items: center;
-    padding: 20px;
+    grid-template-columns: 36% minmax(0, 1fr);
+    gap: 0;
+    align-items: stretch;
+    padding: 0;
     margin: 0 0 16px;
     border: 1px solid var(--line);
     border-radius: 8px;
+    overflow: hidden;
     background: var(--bg);
     box-shadow: 0 2px 8px rgba(38, 60, 76, .025);
     transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 .pub-body, .pub-media { min-width: 0; }
 .pub-media { position: relative; }
-
-/* Video cards: the preview fills the left edge of the card, top to bottom. */
-.pub-video {
-    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
-    align-items: stretch;
-    padding: 0;
-    overflow: hidden;
-}
-.pub-video .pub-body { padding: 20px 22px 20px 0; align-self: center; }
-.pub-video .pub-media, .pub-video .pub-thumb { height: 100%; }
-.pub-video .pub-thumb {
-    aspect-ratio: auto;
-    min-height: 220px;
-    border-radius: 0;
-    background: #141c24;
-}
-.pub-video .pub-thumb video { object-fit: cover; }
+.pub-body { padding: 22px 24px; align-self: center; }
 
 .pub-thumb {
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 16 / 10;
-    border-radius: 4px;
+    height: 100%;
+    min-height: 210px;
+    padding: 18px;
+    border-right: 1px solid var(--line);
     overflow: hidden;
     background: #fff;
     line-height: 0;
 }
+.pub-media .pub-thumb { padding: 0; border-right: 0; background: #141c24; }
 
 .pub-thumb img,
 .pub-thumb video {
@@ -433,6 +423,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     height: 100%;
     object-fit: contain;
 }
+.pub-media .pub-thumb video { position: absolute; inset: 0; object-fit: cover; }
 
 .pub-topic { display: flex; align-items: center; gap: 6px; font-size: .67rem; color: var(--muted); margin-bottom: 7px; }
 .pub-title {
@@ -449,8 +440,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .pub-authors { margin: 0; font-size: .74rem; line-height: 1.7; color: var(--muted); }
 .pub-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin-top: 13px; }
 
-.pub-thumb-cover { aspect-ratio: 16 / 9; background: #141c24; }
-.pub-video .pub-thumb-cover video { object-position: left center; }
+.pub-thumb-cover video { object-position: left center; }
 .media-badge {
     position: absolute;
     top: 8px;
@@ -799,7 +789,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .layout { grid-template-columns: 200px minmax(0, 1fr); gap: 36px; }
     .nav-links { gap: 4px 14px; }
     .nav-links a { font-size: .74rem; }
-    .pub { grid-template-columns: 180px minmax(0, 1fr); gap: 18px; padding: 18px; }
 }
 
 @media (min-width: 901px) and (max-height: 760px) {
@@ -825,7 +814,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         margin: 0;
     }
     .visitor-peek { width: 144px; margin-top: 16px; padding: 7px 0; font-size: .72rem; }
-    .pub { grid-template-columns: 208px minmax(0, 1fr); }
 }
 
 @media (max-width: 760px) {
@@ -858,11 +846,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .experience-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .exp-card { padding: 18px; }
     .exp-brand { margin-bottom: 12px; }
-    .pub { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 16px; }
-    .pub-thumb { aspect-ratio: 16 / 9; max-width: 340px; width: 100%; margin: 0 auto; }
-    .pub-video { padding: 0; gap: 0; }
-    .pub-video .pub-thumb { aspect-ratio: 16 / 9; min-height: 0; max-width: none; }
-    .pub-video .pub-body { padding: 16px; }
+    .pub { grid-template-columns: minmax(0, 1fr); }
+    .pub-thumb { height: auto; min-height: 0; aspect-ratio: 16 / 9; border-right: 0; border-bottom: 1px solid var(--line); }
+    .pub-media .pub-thumb { border-bottom: 0; }
+    .pub-body { padding: 16px 18px 18px; }
     .pub-title { font-size: 1.12rem; }
     .pub-description { font-size: .83rem; }
     .pub-authors { font-size: .72rem; }
