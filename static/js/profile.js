@@ -48,50 +48,22 @@
 
     document.querySelectorAll("[data-preview-video]").forEach(function (video) {
         var card = video.closest(".pub");
-        var button = video.closest(".pub-media").querySelector(".preview-toggle");
         var visible = !("IntersectionObserver" in window);
-        var userPaused = false;
-        var manualPlay = false;
 
-        function syncButton() {
-            var label = (video.paused ? "Play " : "Pause ") + (video.dataset.previewLabel || "preview");
-            button.setAttribute("aria-label", label);
-            button.title = label;
-            button.querySelector("[data-icon-play]").toggleAttribute("hidden", !video.paused);
-            button.querySelector("[data-icon-pause]").toggleAttribute("hidden", video.paused);
-        }
-
+        // Muted previews loop while on screen; no controls, no autoplay under reduced motion.
         function updatePlayback() {
-            var shouldPlay = visible && !card.hidden && !document.hidden &&
-                !userPaused && (!motion.matches || manualPlay);
+            var shouldPlay = visible && !card.hidden && !document.hidden && !motion.matches;
             if (shouldPlay) {
                 var playback = video.play();
-                if (playback) playback.catch(syncButton);
+                if (playback) playback.catch(function () {});
             } else {
                 video.pause();
             }
         }
 
-        button.hidden = false;
-        button.addEventListener("click", function () {
-            if (video.paused) {
-                userPaused = false;
-                manualPlay = true;
-            } else {
-                userPaused = true;
-                manualPlay = false;
-            }
-            updatePlayback();
-        });
-        video.addEventListener("play", syncButton);
-        video.addEventListener("pause", syncButton);
         document.addEventListener("visibilitychange", updatePlayback);
-        function onMotionChange() {
-            if (motion.matches) manualPlay = false;
-            updatePlayback();
-        }
-        if (motion.addEventListener) motion.addEventListener("change", onMotionChange);
-        else motion.addListener(onMotionChange);
+        if (motion.addEventListener) motion.addEventListener("change", updatePlayback);
+        else motion.addListener(updatePlayback);
         if ("IntersectionObserver" in window) {
             new IntersectionObserver(function (entries) {
                 visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.25;
@@ -99,7 +71,6 @@
             }, { threshold: 0.25 }).observe(video.closest(".pub-media"));
         }
         videoUpdates.push(updatePlayback);
-        syncButton();
         updatePlayback();
     });
 
