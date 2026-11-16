@@ -1,5 +1,12 @@
 # Project Update Notes
 
+## 2026-11-15
+
+- Homepage refresh (user-approved; style references `selen-suyue.github.io` and the senior collaborator's homepage `yu2hi13.github.io`, adapted rather than copied). Keeps white background, blue links, restrained teal accents, Newsreader + Inter; adds one local **Caveat** handwritten greeting (`static/assets/fonts/caveat-latin.woff2` + OFL). Sticky nav with scrollspy, sticky desktop sidebar, four Experience cards placed above Publications, publication topic filters (All / Robotics / Multimodal / Systems). Behaviour lives in `static/js/profile.js`; preview videos autoplay only when visible, have a play/pause button, and respect reduced motion. Inline play/pause/graduation-cap icons are from Lucide (`static/assets/lucide-LICENSE.txt`).
+- The user rejected the blue-background CUMT tile. `cumt-logo.png` is now the official monochrome wordmark from `https://www.cumt.edu.cn/images/logo.png` (white, transparent) recoloured to CUMT blue `#00549f` with alpha kept, shown on the same white card as the other affiliations. Do not reintroduce the blue tile.
+- Added **Mind2Act World** under a new "Project Releases" publication group, at the user's request (the user contributed to the project). Title, description and links follow the senior collaborator's homepage entry: project release 2026, technical report and full code coming soon; no public author list exists, so the entry says "Project contributor" only. Links: project site, Douyin, RedNote (English labels, English-only site). Preview `static/assets/videos/mind2act_thumb.mp4` is a 23s, 640px, muted cut (19s–42s) of the senior's public preview video; poster `thumbs/mind2act.jpg` is a frame from it.
+- Visitor counter and its dated fallback/retry behaviour are unchanged.
+
 ## 2026-10-17
 
 - The user explicitly chose **Agentic Robotics** as the research-area label, replacing **Agentic Robot Learning**. Apply it consistently to the homepage metadata, sidebar, interests and focus paragraph, the GitHub profile README, and GitHub account bio. The paired direction remains **Embodied Reasoning**; RSI remains a long-term goal. This supersedes the terminology in the 2026-10-07 note. Use natural sentence case in prose and title case in the short GitHub bio; do not rewrite historical paper titles or imply new research results.

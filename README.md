@@ -46,7 +46,7 @@ Visit the live website: [https://muqy1818.github.io/](https://muqy1818.github.io
 ### Customization
 
 - **Content**: Edit `index.html` directly to update your bio, news, publications, and awards.
-- **Styles**: Custom CSS is located in `static/css/academic.css`.
+- **Styles**: Custom CSS is located in `static/css/home.css`; `static/js/profile.js` handles scrollspy, topic filters, and preview-video playback.
 - **Assets**: Images and videos are stored in `static/assets/`.
 
 ## 📁 Project Structure
@@ -54,7 +54,7 @@ Visit the live website: [https://muqy1818.github.io/](https://muqy1818.github.io
 ```
 ├── index.html          # Main homepage file (Edit this!)
 ├── static/
-│   ├── css/           # Stylesheets (academic.css, etc.)
+│   ├── css/           # Stylesheets (home.css)
 │   ├── js/            # JavaScript files
 │   └── assets/        # Images, PDFs, and Videos
 ├── start_server.py     # Local development helper script
