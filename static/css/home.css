@@ -425,23 +425,34 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     align-items: center;
     justify-content: center;
     height: 100%;
-    min-height: 210px;
-    padding: 18px;
-    border-right: 1px solid var(--line);
+    min-height: 0;
+    padding: 20px 0 20px 20px;
     overflow: hidden;
     background: #fff;
     line-height: 0;
 }
-.pub-media .pub-thumb { padding: 0; border-right: 0; background: #141c24; }
 
 .pub-thumb img,
 .pub-thumb video {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 100%;
     object-fit: contain;
 }
-.pub-media .pub-thumb video { position: absolute; inset: 0; object-fit: cover; }
+/* Videos sit inside the card like a figure: full 16:9 frame, never cropped. */
+.pub-media { display: flex; align-items: center; padding: 20px 0 20px 20px; }
+.pub-media .pub-thumb {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #141c24;
+}
+.pub-media .pub-thumb video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .pub-topic { display: flex; align-items: center; gap: 6px; font-size: .67rem; color: var(--muted); margin-bottom: 7px; }
 .pub-title {
@@ -458,9 +469,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .pub-authors { margin: 0; font-size: .74rem; line-height: 1.7; color: var(--muted); }
 .pub-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin-top: 13px; }
 
-.pub-thumb-cover video { object-position: left center; }
 .media-badge {
     position: absolute;
+    z-index: 1;
     top: 8px;
     right: 8px;
     padding: 2px 9px;
@@ -905,9 +916,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .exp-card { padding: 18px; }
     .exp-brand { margin-bottom: 12px; }
     .pub { grid-template-columns: minmax(0, 1fr); }
-    .pub-thumb { height: auto; min-height: 0; aspect-ratio: 16 / 9; border-right: 0; border-bottom: 1px solid var(--line); }
-    .pub-media .pub-thumb { border-bottom: 0; }
-    .pub-body { padding: 16px 18px 18px; }
+    .pub-thumb, .pub-media { padding: 16px 16px 0; }
+    .pub-thumb { height: auto; max-height: 220px; }
+    .pub-media .pub-thumb { max-height: none; }
+    .pub-body { padding: 14px 18px 18px; }
     .pub-title { font-size: 1.12rem; }
     .pub-description { font-size: .83rem; }
     .pub-authors { font-size: .72rem; }
