@@ -74,6 +74,19 @@
         updatePlayback();
     });
 
+    // Write the closing signature once, the first time it scrolls into view.
+    var signature = document.querySelector(".signature");
+    if (signature && "IntersectionObserver" in window && !motion.matches) {
+        signature.classList.add("is-armed");
+        var signatureObserver = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            signature.getBoundingClientRect();
+            signature.classList.add("is-drawn");
+            signatureObserver.disconnect();
+        }, { threshold: 0.6 });
+        signatureObserver.observe(signature);
+    }
+
     var filters = document.querySelector(".publication-filters");
     if (filters) {
         var buttons = Array.from(filters.querySelectorAll("[data-filter]"));

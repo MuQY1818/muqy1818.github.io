@@ -27,6 +27,14 @@
     src: url("../assets/fonts/caveat-latin.woff2") format("woff2");
 }
 
+@font-face {
+    font-family: "Zhi Mang Xing";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../assets/fonts/zhimangxing-motto.woff2") format("woff2");
+}
+
 :root {
     --ink: #485560;
     --ink-strong: #293642;
@@ -178,6 +186,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     margin: 0 0 8px;
     line-height: 1.25;
     letter-spacing: 0;
+}
+/* Personal motto, brush script (subset to four glyphs). */
+.side-motto {
+    margin: -2px 0 12px;
+    font-family: "Zhi Mang Xing", "Kaiti SC", "STKaiti", "KaiTi", serif;
+    font-size: 1.6rem;
+    line-height: 1.15;
+    letter-spacing: .1em;
+    color: var(--ink-strong);
+    cursor: default;
 }
 
 .side-role {
@@ -767,6 +785,33 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         border-color: #b5cdd5;
         box-shadow: 0 8px 24px rgba(38, 60, 76, .07);
     }
+}
+
+/* Handwritten signature closing the Reflections section.
+   Without JS (or with reduced motion) it is simply shown filled. */
+.signature {
+    display: flex;
+    justify-content: flex-end;
+    margin: 26px 0 0;
+}
+.signature svg { display: block; width: 190px; height: auto; overflow: visible; }
+.signature path {
+    fill: var(--ink-strong);
+    stroke: var(--ink-strong);
+    stroke-width: 14;
+    stroke-linejoin: round;
+}
+.signature.is-armed path {
+    fill-opacity: 0;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+.signature.is-drawn path {
+    fill-opacity: 1;
+    stroke-dashoffset: 0;
+    transition:
+        stroke-dashoffset .75s cubic-bezier(.6, .05, .3, 1) calc(var(--i) * .16s),
+        fill-opacity .6s ease calc(var(--i) * .16s + .55s);
 }
 
 /* ---------------- Footer ---------------- */
