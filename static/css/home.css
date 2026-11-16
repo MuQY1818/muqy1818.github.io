@@ -40,7 +40,6 @@
     --ink-strong: #293642;
     --muted: #687781;
     --link: #256aa4;
-    --teal: #247b6d;
     --line: #e4eaed;
     --surface: #f5f8f9;
     --badge-bg: #eef4fb;
@@ -641,7 +640,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 /* ---------------- Visitors ---------------- */
 
 .visitors {
-    --visitor-accent: #247a69;
+    --visitor-accent: var(--link);
     display: grid;
     grid-template-columns: minmax(160px, .9fr) minmax(180px, 1.2fr) minmax(280px, 1.4fr);
     align-items: center;
@@ -826,6 +825,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 /* ---------------- Footer ---------------- */
 
 .footer {
+    align-items: center;
     border-top: 1px solid var(--line);
     padding: 18px 0 32px;
     font-size: .85rem;
