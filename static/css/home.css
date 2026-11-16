@@ -400,59 +400,54 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     white-space: nowrap;
 }
 
-/* Every paper card: a fixed media panel flush with the card's left edge,
-   a hairline divider, then the text column. Text starts at the same x on every card. */
+/* Publication rows (after the senior collaborator's homepage): no card chrome,
+   hairline separators, a 16:9 media frame with a soft shadow on the left,
+   a venue ribbon hanging off its top-left corner, text aligned to the frame's top. */
 .pub {
     display: grid;
-    grid-template-columns: 36% minmax(0, 1fr);
-    gap: 0;
-    align-items: stretch;
-    padding: 0;
-    margin: 0 0 16px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--bg);
-    box-shadow: 0 2px 8px rgba(38, 60, 76, .025);
-    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    grid-template-columns: 42% minmax(0, 1fr);
+    align-items: start;
+    padding: 24px 0;
+    margin: 0;
+    border-bottom: 1px solid var(--line);
 }
+.publication-group .pub:last-child { border-bottom: 0; }
 .pub-body, .pub-media { min-width: 0; }
+.pub-body { padding: 0 0 0 28px; }
 .pub-media { position: relative; }
-.pub-body { padding: 22px 24px; align-self: center; }
 
 .pub-thumb {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    min-height: 0;
-    padding: 20px 0 20px 20px;
-    overflow: hidden;
-    background: #fff;
-    line-height: 0;
-}
-
-.pub-thumb img,
-.pub-thumb video {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: contain;
-}
-/* Videos sit inside the card like a figure: full 16:9 frame, never cropped. */
-.pub-media { display: flex; align-items: center; padding: 20px 0 20px 20px; }
-.pub-media .pub-thumb {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 0;
     aspect-ratio: 16 / 9;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    background: #141c24;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(25, 35, 45, .10), 0 6px 16px rgba(25, 35, 45, .10);
+    line-height: 0;
+    transition: transform .25s ease, box-shadow .25s ease;
 }
-.pub-media .pub-thumb video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pub-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.pub-thumb video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.pub-badge {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: -6px;
+    padding: 3px 10px;
+    background: var(--link);
+    color: #fff;
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    line-height: 1.6;
+    box-shadow: 0 1px 3px rgba(25, 35, 45, .18);
+    pointer-events: none;
+}
+.pub-badge-muted { background: #6f7b85; }
 
 .pub-topic { display: flex; align-items: center; gap: 6px; font-size: .67rem; color: var(--muted); margin-bottom: 7px; }
 .pub-title {
@@ -469,21 +464,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .pub-authors { margin: 0; font-size: .74rem; line-height: 1.7; color: var(--muted); }
 .pub-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin-top: 13px; }
 
-.media-badge {
-    position: absolute;
-    z-index: 1;
-    top: 8px;
-    right: 8px;
-    padding: 2px 9px;
-    border-radius: 4px;
-    background: rgba(18, 24, 30, .68);
-    color: #fff;
-    font-size: .64rem;
-    font-weight: 600;
-    letter-spacing: .02em;
-    line-height: 1.7;
-    pointer-events: none;
-}
 
 .venue-chip {
     display: inline-block;
@@ -804,10 +784,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .pub:hover {
-        transform: translateY(-3px);
-        border-color: #b5cdd5;
-        box-shadow: 0 8px 24px rgba(38, 60, 76, .07);
+    .pub:hover .pub-thumb {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(25, 35, 45, .10), 0 12px 26px rgba(25, 35, 45, .14);
     }
 }
 
@@ -915,11 +894,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .experience-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .exp-card { padding: 18px; }
     .exp-brand { margin-bottom: 12px; }
-    .pub { grid-template-columns: minmax(0, 1fr); }
-    .pub-thumb, .pub-media { padding: 16px 16px 0; }
-    .pub-thumb { height: auto; max-height: 220px; }
-    .pub-media .pub-thumb { max-height: none; }
-    .pub-body { padding: 14px 18px 18px; }
+    .pub { grid-template-columns: minmax(0, 1fr); padding: 20px 0; }
+    .pub-media { margin-left: 6px; }
+    .pub-body { padding: 16px 0 0; }
     .pub-title { font-size: 1.12rem; }
     .pub-description { font-size: .83rem; }
     .pub-authors { font-size: .72rem; }
@@ -946,5 +923,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .visitors.is-visible .visitor-metrics dd { animation: none; }
     .intro-hello, .intro-hello .wave { animation: none; }
     .pub, .publication-filters button { transition: none; }
-    .pub:hover { transform: none; }
+    .pub-thumb { transition: none; }
+    .pub:hover .pub-thumb { transform: none; }
 }
