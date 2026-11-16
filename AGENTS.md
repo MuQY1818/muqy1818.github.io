@@ -164,3 +164,4 @@
 
 - Replaced the homepage profile image reference with `static/assets/img/photo2.jpg`.
 - Processed `photo2.jpg` into a vertical 2:3 portrait asset for the existing homepage profile layout.
+- Reflections third paragraph (user-approved 2026-11-15): the reward loop that shapes robots also shapes people; ends on the research yardstick "real work in the world vs. a number on a leaderboard". Keep personal stories, third parties, and determinism/education-policy material off the site.
