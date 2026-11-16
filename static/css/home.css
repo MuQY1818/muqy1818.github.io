@@ -135,19 +135,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     font-weight: 500;
     color: var(--ink);
     white-space: nowrap;
+    transition: color .2s ease;
 }
-.nav-links a:hover { color: var(--link); text-decoration: none; }
-.nav-links a[aria-current="location"] { color: var(--link); }
-.nav-links a[aria-current="location"]::after {
+/* Underline grows from the centre: grey on hover, blue for the current section. */
+.nav-links a::after {
     content: "";
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     height: 2px;
     border-radius: 1px;
-    background: currentColor;
+    background: #c3ccd3;
+    transform: scaleX(0);
+    transition: transform .28s cubic-bezier(.3, .7, .2, 1), background-color .2s ease;
 }
+.nav-links a:hover { color: var(--ink-strong); text-decoration: none; }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a[aria-current="location"] { color: var(--link); }
+.nav-links a[aria-current="location"]::after { transform: scaleX(1); background: var(--link); }
 
 /* ---------------- Layout ---------------- */
 
@@ -918,6 +924,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .nav-links a, .nav-links a::after { transition: none; }
     html { scroll-behavior: auto; }
     .visitor-map::after { display: none; }
     .visitors.is-visible .visitor-metrics dd { animation: none; }

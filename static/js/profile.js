@@ -10,19 +10,65 @@
     var framePending = false;
     var videoUpdates = [];
 
-    function updateNavigation() {
-        framePending = false;
-        if (!nav || !sections.length) return;
-        var boundary = nav.getBoundingClientRect().bottom + 48;
-        var current = sections[0];
-        sections.forEach(function (entry) {
-            if (entry.section.getBoundingClientRect().top <= boundary) current = entry;
-        });
+    var lockedEntry = null;
+    var unlockTimer = 0;
+
+    function setCurrent(current) {
         sections.forEach(function (entry) {
             if (entry === current) entry.link.setAttribute("aria-current", "location");
             else entry.link.removeAttribute("aria-current");
         });
     }
+
+    function updateNavigation() {
+        framePending = false;
+        if (!nav || !sections.length) return;
+        // While a nav click is smooth-scrolling, keep its link lit instead of
+        // flickering through every section in between.
+        if (lockedEntry) {
+            setCurrent(lockedEntry);
+            return;
+        }
+        var boundary = nav.getBoundingClientRect().bottom + 48;
+        var current = sections[0];
+        sections.forEach(function (entry) {
+            if (entry.section.getBoundingClientRect().top <= boundary) current = entry;
+        });
+        // Short final sections never reach the boundary; at the very bottom, light the last one.
+        var root = document.documentElement;
+        if (window.innerHeight + window.scrollY >= root.scrollHeight - 2) {
+            current = sections[sections.length - 1];
+        }
+        setCurrent(current);
+    }
+
+    function releaseLock() {
+        clearTimeout(unlockTimer);
+        if (!lockedEntry) return;
+        lockedEntry = null;
+        queueNavigation();
+    }
+
+    sections.forEach(function (entry) {
+        entry.link.addEventListener("click", function () {
+            lockedEntry = entry;
+            setCurrent(entry);
+            clearTimeout(unlockTimer);
+            unlockTimer = setTimeout(releaseLock, 4000);
+        });
+    });
+    // Release the click lock once scrolling has actually come to rest.
+    window.addEventListener("scroll", function () {
+        if (!lockedEntry) return;
+        clearTimeout(unlockTimer);
+        unlockTimer = setTimeout(releaseLock, 180);
+    }, { passive: true });
+    if ("onscrollend" in window) {
+        window.addEventListener("scrollend", releaseLock);
+    }
+    window.addEventListener("wheel", releaseLock, { passive: true });
+    window.addEventListener("touchstart", releaseLock, { passive: true });
+    window.addEventListener("keydown", releaseLock);
 
     function queueNavigation() {
         if (framePending) return;
