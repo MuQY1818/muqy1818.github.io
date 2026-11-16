@@ -13,11 +13,27 @@
     var lockedEntry = null;
     var unlockTimer = 0;
 
+    var strip = document.querySelector(".nav-links");
+    var shownEntry = null;
+
+    // On narrow screens the links form a horizontal strip; keep the current one in view.
+    function revealInStrip(link) {
+        if (!strip || strip.scrollWidth <= strip.clientWidth + 1) return;
+        var stripBox = strip.getBoundingClientRect();
+        var linkBox = link.getBoundingClientRect();
+        var target = strip.scrollLeft + (linkBox.left - stripBox.left) - (stripBox.width - linkBox.width) / 2;
+        strip.scrollTo({ left: Math.max(0, target), behavior: motion.matches ? "auto" : "smooth" });
+    }
+
     function setCurrent(current) {
         sections.forEach(function (entry) {
             if (entry === current) entry.link.setAttribute("aria-current", "location");
             else entry.link.removeAttribute("aria-current");
         });
+        if (current !== shownEntry) {
+            shownEntry = current;
+            revealInStrip(current.link);
+        }
     }
 
     function updateNavigation() {
@@ -29,7 +45,8 @@
             setCurrent(lockedEntry);
             return;
         }
-        var boundary = nav.getBoundingClientRect().bottom + 48;
+        // A section becomes current once its heading passes ~30% down the viewport.
+        var boundary = Math.max(nav.getBoundingClientRect().bottom + 48, window.innerHeight * 0.3);
         var current = sections[0];
         sections.forEach(function (entry) {
             if (entry.section.getBoundingClientRect().top <= boundary) current = entry;

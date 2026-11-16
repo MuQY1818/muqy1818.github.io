@@ -446,7 +446,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     padding: 3px 10px;
     background: var(--link);
     color: #fff;
-    font-size: .66rem;
+    font-size: .7rem;
     font-weight: 600;
     letter-spacing: .02em;
     line-height: 1.6;
@@ -455,7 +455,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .pub-badge-muted { background: #6f7b85; }
 
-.pub-topic { display: flex; align-items: center; gap: 6px; font-size: .67rem; color: var(--muted); margin-bottom: 7px; }
+.pub-topic { display: flex; align-items: center; gap: 6px; font-size: .71rem; color: var(--muted); margin-bottom: 7px; }
 .pub-title {
     font-family: "Newsreader", Georgia, "Times New Roman", serif;
     font-size: 1.14rem;
@@ -591,7 +591,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     padding: 1px 6px;
     background: var(--badge-bg);
     color: var(--link);
-    font-size: .65rem;
+    font-size: .7rem;
     line-height: 1.8;
 }
 .exp-status-incoming { background: var(--badge-bg); color: var(--link); }
@@ -739,7 +739,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 .visitor-metrics dt { font-size: .76rem; color: #69747c; }
-.visitor-estimate { display: block; font-size: .68rem; }
+.visitor-estimate { display: block; font-size: .71rem; }
 
 .visitor-metrics dd {
     margin: 0 0 8px;
@@ -760,7 +760,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     animation-delay: .09s;
 }
 
-.visitor-credit { margin: 16px 0 0; font-size: .68rem; color: #69747c; }
+.visitor-credit { margin: 16px 0 0; font-size: .71rem; color: #69747c; }
 .visitor-credit a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 @keyframes visitor-sweep {
@@ -857,9 +857,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .sidebar { position: static; padding-bottom: 24px; margin-bottom: 30px; border-bottom: 1px solid var(--line); }
     .side-profile { display: flex; align-items: center; gap: 24px; }
     .side-identity { min-width: 0; }
-    .side-name { font-size: 1.4rem; }
+    .side-name { display: none; } /* the page heading already carries the name */
+    .side-motto { margin: 0 0 8px; font-size: 1.45rem; }
     .side-role { font-size: .77rem; }
-    .side-focus, .affil-logo { display: none; }
+    .side-focus, .affil-logo, .visitor-peek { display: none; }
     .side-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
     .avatar {
         flex: none;
@@ -871,6 +872,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 @media (max-width: 760px) {
+    /* Two tiers: name on top, a swipeable single-row section strip below. */
+    .topnav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        min-height: 0;
+        padding: 12px 0 0;
+    }
+    .nav-brand { font-size: 1.15rem; }
+    .nav-links {
+        flex: none;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 22px;
+        margin: 0 -24px;
+        padding: 6px 24px 10px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-padding-inline: 24px;
+        scrollbar-width: none;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 26px), transparent);
+        mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 26px), transparent);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { font-size: .78rem; padding: 4px 0 5px; }
     .visitors {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 24px 20px;
@@ -885,17 +911,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 @media (max-width: 600px) {
     .wrap { padding: 0 20px; }
-    .topnav { gap: 16px; padding: 12px 0; min-height: 68px; align-items: center; }
-    .nav-brand { font-size: 1.12rem; }
-    .nav-links { gap: 2px 12px; }
-    .nav-links a { font-size: .68rem; }
+    .nav-links { margin: 0 -20px; padding: 6px 20px 10px; scroll-padding-inline: 20px; }
     .intro-name { gap: 16px; }
     .intro-name h1 { font-size: 2.5rem; }
     .intro-hello { font-size: 1.65rem; }
     .intro-heading .intro-focus { font-size: 1.22rem; }
     .section { margin-bottom: 36px; }
     .section h2 { font-size: 1.35rem; }
-    .section-heading > a { font-size: .68rem; }
+    .section-heading > a { font-size: .74rem; padding: 6px 0; }
     .news li, .awards li { grid-template-columns: 65px minmax(0, 1fr); gap: 10px; }
     .experience-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .exp-card { padding: 18px; }
@@ -909,12 +932,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .pub-meta { gap: 8px 12px; }
 }
 
+@media (max-width: 900px) {
+    /* Comfortable touch targets for small links and disclosure toggles. */
+    .news-more summary, .experience-detail summary { padding: 8px 0; }
+    .project-title a, .footer a { display: inline-block; padding: 6px 0; }
+    .section-heading > a { padding: 6px 0; }
+}
+
 @media (max-width: 360px) {
     .intro-name h1 { font-size: 2.2rem; }
     .intro-hello { font-size: 1.5rem; }
     .intro-name { gap: 12px; }
-    .nav-brand { font-size: 1rem; }
-    .nav-links a { font-size: .65rem; }
     .side-profile { gap: 18px; }
     .avatar { width: 86px; height: 86px; }
     .visitors { grid-template-columns: minmax(0, 1fr); }
