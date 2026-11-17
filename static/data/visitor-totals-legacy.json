@@ -1,0 +1,17 @@
+{
+  "provider": "busuanzi",
+  "archivedReadings": [
+    {
+      "source": "published fallback",
+      "site_uv": 8,
+      "site_pv": 9,
+      "recordedAt": "2026-11-13T09:08:47.264Z"
+    },
+    {
+      "source": "last successful browser reading",
+      "site_uv": 21,
+      "site_pv": 71,
+      "recordedAt": "2026-11-16T12:14:25.685Z"
+    }
+  ]
+}

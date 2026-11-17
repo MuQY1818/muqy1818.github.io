@@ -1,5 +1,24 @@
 # Project Update Notes
 
+## 2026-11-17
+
+- The user approved replacing Busuanzi with a self-managed Cloudflare Worker +
+  D1 counter. Backend source, SQL migrations, tests and deployment notes live in
+  `analytics/`; the public API URL is in `static/data/visitor-config.json`.
+  Complete backend deployment and verification before publishing the frontend.
+- A POST records one UUID event; database triggers and uniqueness constraints
+  prevent duplicate/concurrent retries from inflating totals. The refresh
+  button and snapshot script only GET totals. Preview hosts never count.
+- Visitors estimate random first-party browser identities. Blocked storage
+  counts page views without inventing a visitor ID. D1 stores HMAC hashes and
+  short-lived event records, not raw IPs or original browser IDs. Keep secrets
+  outside Git, retain the HMAC key between deploys, and do not casually reset
+  production data.
+- New-provider cache records are versioned separately from Busuanzi. Archive
+  legacy totals without adding them to the new counts. On failure, retain the
+  true saved timestamp and display "Live stats unavailable"; never relabel old
+  data as fresh. The world map remains decorative.
+
 ## 2026-11-15
 
 - At the user's request the Fudan Experience card shows the university emblem + wordmark (like Tsinghua/CUMT) instead of the TEAI logo: `fudan-logo.png` is the official white monochrome logo from `https://www.fudan.edu.cn/_upload/site/00/02/2/logo.png` (233x72) recoloured to Fudan blue `#0E419C`, trimmed to 221x64. The source has a brown semi-transparent drop shadow under the white glyphs; only near-white pixels are kept, otherwise the shadow turns into a blue halo. No higher-resolution official source was reachable (the old `fudan.edu.cn/files/logo.zip` is 404). The sidebar keeps the TEAI logo.

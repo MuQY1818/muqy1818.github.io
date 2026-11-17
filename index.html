@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico">
     <link rel="stylesheet" href="static/css/home.css?v=20261115-refresh15">
     <script defer src="static/js/profile.js?v=20261115-refresh15"></script>
-    <script defer src="static/js/visitors.js?v=20261113-recovery"></script>
+    <script defer src="static/js/visitors.js?v=20261117-worker1"></script>
 </head>
 <body>
 
@@ -412,7 +412,7 @@
             <p class="visitor-status" role="status">
                 <span class="visitor-status-dot" aria-hidden="true"></span>
                 <span data-visitor-status>JavaScript is required for totals</span>
-                <button class="visitor-retry" data-visitor-retry type="button" aria-label="Retry visitor totals" title="Retry visitor totals" hidden>
+                <button class="visitor-retry" data-visitor-retry type="button" aria-label="Refresh visitor totals" title="Refresh visitor totals" hidden>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
                 </button>
             </p>
@@ -431,7 +431,10 @@
                     <dd data-visitor-count="site_pv">&mdash;</dd>
                 </div>
             </dl>
-            <p class="visitor-credit">Site-wide totals via <a href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">Busuanzi</a></p>
+            <p class="visitor-credit">
+                <span data-visitor-started></span>
+                Visitors are estimated per browser; clearing storage or changing devices can count again.
+            </p>
         </div>
     </section>
 

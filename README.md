@@ -68,20 +68,26 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Visitor totals
 
 The homepage has a visitor section above the footer and a compact sidebar link.
-`static/js/visitors.js` loads site-wide estimated visitors and page views from
-Busuanzi. Requests run only on the HTTPS production hostname,
-`muqy1818.github.io`; local files, localhost and other preview hosts do not count.
-When the provider is blocked or slow, the page displays the latest successful
-reading from local storage or the same-origin `static/data/visitor-totals.json`
-snapshot, labeled with its saved date. A retry button requests fresh totals.
-Responses arriving after the 20-second soft timeout can still update the page;
-pending callbacks are cleaned up after 60 seconds. Storage is optional.
-No historical totals are reconstructed. The visitor estimate is not an exact
-count of individual people, and the world map is decorative.
+The new counter implementation uses a Cloudflare Worker and D1; its code and
+deployment instructions are in [`analytics/`](analytics/README.md). The public
+API base URL is configured in `static/data/visitor-config.json`.
 
-Refresh the published fallback with `node scripts/snapshot-visitors.mjs` before
-a release. This stores a real response and its timestamp. Run it deliberately,
-not on a schedule: the service also counts that request as an access.
+`static/js/visitors.js` sends one deduplicated page-load event on the HTTPS
+production hostname, `muqy1818.github.io`. Local files, localhost and other
+preview hosts do not count. Random first-party browser IDs estimate returning
+visitors; blocked storage still allows page views without inventing persistent
+identities. The API stores keyed hashes, not raw browser IDs or IP addresses.
+These are estimated browser counts, not exact counts of people.
+
+Refresh only reads totals and never records another view. When the API fails,
+the page keeps a dated successful local reading or the same-origin
+`static/data/visitor-totals.json` snapshot, explicitly labeled as saved data.
+Missing statistics remain dashes. Refresh the published fallback with
+`node scripts/snapshot-visitors.mjs`; this is also read-only.
+
+The legacy Busuanzi readings are preserved in
+`static/data/visitor-totals-legacy.json` and are not mixed into the new counter.
+The world map remains decorative.
 
 The map is a local SVG made from Natural Earth's public-domain v5.1.2 110m land
 polygons. To regenerate it, download `ne_110m_land.geojson` from that release and

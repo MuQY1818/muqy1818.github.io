@@ -1,0 +1,37 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "weijue-visitors",
+	"main": "src/worker.js",
+	"compatibility_date": "2026-07-01",
+	"workers_dev": true,
+	"preview_urls": false,
+	"vars": {
+		"ALLOWED_ORIGIN": "https://muqy1818.github.io"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "weijue-visitors",
+			"migrations_dir": "migrations",
+			"database_id": "b26de73a-a86c-4f95-9856-49929cc41bb8"
+		}
+	],
+	"ratelimits": [
+		{
+			"name": "REQUEST_LIMITER",
+			"namespace_id": "181820261117",
+			"simple": {
+				"limit": 120,
+				"period": 60
+			}
+		}
+	],
+	"triggers": {
+		"crons": [
+			"17 3 * * *"
+		]
+	},
+	"observability": {
+		"enabled": false
+	}
+}
