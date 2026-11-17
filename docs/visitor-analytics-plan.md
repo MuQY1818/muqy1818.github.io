@@ -1,7 +1,7 @@
 # Visitor analytics replacement
 
 Design date: November 17, 2026.
-Status: backend deployed and verified; homepage deployment pending.
+Status: backend and homepage deployed; production counter verified.
 See `../analytics/README.md` for the implemented counting contract.
 
 Backend deployment: `https://weijue-visitors.weijuebu.workers.dev`.
@@ -9,6 +9,12 @@ The dedicated D1 counter started at `2026-11-17T15:18:20.000Z`.
 Health, read-only totals, browser CORS preflight and both normal/direct local
 network requests were verified. Independent mobile-network testing remains
 outside the current verification coverage.
+
+Verification: 11 backend tests and 14 frontend tests passed. In the deployed
+homepage, a refresh issued only `GET /v1/totals` and left both numbers unchanged;
+a subsequent page load added a view while retaining the same visitor count.
+Desktop and 390px mobile layouts were checked. The published fallback is a
+genuine API reading, not an imported or reconstructed legacy total.
 
 ## Problem and evidence
 
