@@ -1,5 +1,18 @@
 # Project Update Notes
 
+## 2026-11-20
+
+- Mind2Act World now has a public technical report
+  (`https://arxiv.org/abs/2611.26444`, submitted 2026-11-19) and official code
+  (`https://github.com/Mind2Act/Mind2Act_World`), verified against the project
+  website, arXiv metadata and public repository. This supersedes the Nov 15
+  "coming soon" and "Project contributor" wording.
+- Move the existing video entry to the top of "Preprints & Under Review",
+  label it "arXiv preprint, 2026", and remove the empty Project Releases group.
+  The abbreviated author line follows the released paper's order and bolds
+  Weijue Bu without implying first or equal authorship. Keep the video and
+  social links, and add a November News entry linking the paper and code.
+
 ## 2026-11-17
 
 - The user approved replacing Busuanzi with a self-managed Cloudflare Worker +
