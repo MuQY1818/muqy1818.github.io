@@ -1,5 +1,16 @@
 # Project Update Notes
 
+## 2026-11-22
+
+- Research positioning changed at the user's request from **Agentic Robotics / Embodied Reasoning** to **vision-language-action (VLA) models for long-horizon manipulation**; the user judged the real-time, closed-loop advantage of VLA policies over VLM-agent pipelines to be the better direction. This supersedes the 2026-10-17 label note for the homepage (tagline, meta description, sidebar focus, bio). RSI stays as the long-term goal. The GitHub profile README and account bio still say Agentic Robotics and have not been updated yet.
+- Conscious Gaze is no longer part of the main line (user request). Selected publications are ChainVLA, RoboStream, Mind2Act World, in that order; Conscious Gaze, CALO and PiN-Mod sit in a text-only "Other publications" list. The Robotics / Multimodal / Systems topic filters were removed because they advertised three directions.
+- New Research section (2x2 numbered themes): execution state across action chunks (ChainVLA), memory for long-horizon manipulation (RoboStream), VLA post-training at Noematrix (NOW tag), diagnosing mind and action (Mind2Act World, contributor). Do not call RoboStream a VLA method. The Noematrix work is described as VLA post-training, as confirmed by the user.
+- The hero is name + tagline + two plain body paragraphs. Rejected by the user in this pass, do not reintroduce: a robot demo video in the hero (also a cleaned, re-graded version with a step-tracker overlay), an animated ChainVLA diagram card, a large serif thesis paragraph with underline marks, and a warm-paper single-column redesign modelled on pi.website / kzakka.com. The user wants the page clean and refined within the existing white / sidebar / Newsreader + Inter / link-blue style.
+- Open Source is its own section again, between Publications and Experience, with a nav link. **macbot** comes first: the user's public Apache-2.0 project (`https://github.com/MuQY1818/macbot`, PyPI `macbot` published by MuQY1818); the description and the ~165 ms per pi0.5 action chunk (MLX, M5 Pro) figure are from its README. Its icon `static/assets/img/macbot-mark.svg` is a local copy of the repo's `assets/logo-mark.svg` (rect-only pixel art), rendered with `image-rendering: pixelated`. OpenYoink is second, unchanged.
+- Experience order is Noematrix, Tsinghua, Fudan, CUMT. News shows four embodied items first; Honors shows four awards and folds the six programming/math contests. The visitor counter is unchanged: it was briefly dropped in a preview and the user asked for it back, so keep it.
+- The new rules live in an appended block at the end of `home.css`; asset version `20261122-vla1`.
+- The WeChat ID was removed from the sidebar at the user's request (not to be exposed for now); do not add it back to the homepage or profile README unless asked.
+
 ## 2026-11-20
 
 - Mind2Act World now has a public technical report

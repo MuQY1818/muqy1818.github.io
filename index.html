@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weijue Bu</title>
-    <meta name="description" content="Academic homepage of Weijue Bu — embodied AI algorithm intern at Noematrix and incoming graduate student at the Institute of Trustworthy Embodied Artificial Intelligence (TEAI), Fudan University. Research in agentic robotics, embodied reasoning, and long-horizon robotic manipulation.">
+    <meta name="description" content="Weijue Bu works on vision-language-action (VLA) models for long-horizon robotic manipulation: execution state and memory across action chunks, and VLA post-training. Embodied AI Algorithm Intern at Noematrix; incoming graduate student at Fudan TEAI.">
     <meta name="author" content="Weijue Bu">
     <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico">
-    <link rel="stylesheet" href="static/css/home.css?v=20261115-refresh15">
-    <script defer src="static/js/profile.js?v=20261115-refresh15"></script>
+    <link rel="stylesheet" href="static/css/home.css?v=20261122-vla1">
+    <script defer src="static/js/profile.js?v=20261122-vla1"></script>
     <script defer src="static/js/visitors.js?v=20261117-worker1"></script>
 </head>
 <body>
@@ -20,18 +20,17 @@
         <a class="nav-brand" href="#about">Weijue Bu<span aria-hidden="true">.</span></a>
         <div class="nav-links">
             <a href="#about" aria-current="location">About</a>
-            <a href="#news">News</a>
-            <a href="#experience">Experience</a>
+            <a href="#research">Research</a>
             <a href="#publications">Publications</a>
             <a href="#open-source">Open Source</a>
-            <a href="#awards">Awards</a>
+            <a href="#experience">Experience</a>
+            <a href="#news">News</a>
             <a href="#reflections">Reflections</a>
         </div>
     </nav>
 
     <div class="layout">
 
-        <!-- ============ SIDEBAR ============ -->
         <aside class="sidebar">
             <div class="side-profile">
                 <img class="avatar" src="static/assets/img/avatar.jpg" alt="Photo of Weijue Bu" width="460" height="460">
@@ -42,7 +41,7 @@
                     <p class="side-role">Incoming graduate student<br>@ Fudan TEAI</p>
                 </div>
             </div>
-            <p class="side-focus">Focusing on agentic robotics and embodied reasoning — VLM-driven robotic manipulation.</p>
+            <p class="side-focus">VLA models · Long-horizon manipulation · Post-training</p>
 
             <ul class="side-links">
                 <li>
@@ -61,10 +60,6 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                     <span>Xuzhou / Shanghai, China</span>
                 </li>
-                <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    <span>WeChat: bwj-1215</span>
-                </li>
             </ul>
 
             <a class="affil-logo" href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener" title="Institute of Trustworthy Embodied Artificial Intelligence, Fudan University">
@@ -76,7 +71,6 @@
             </a>
         </aside>
 
-        <!-- ============ MAIN ============ -->
         <main class="main">
 
             <section class="section bio" id="about" aria-labelledby="about-title">
@@ -85,43 +79,171 @@
                         <h1 id="about-title">Weijue Bu</h1>
                         <span class="intro-hello">hello there.<span class="wave" role="img" aria-label="waving hand">👋</span></span>
                     </div>
-                    <p class="intro-focus">Agentic robotics &amp; embodied reasoning.</p>
+                    <p class="intro-focus">Vision-language-action models for long-horizon manipulation.</p>
                 </header>
                 <p>
-                    I am an incoming graduate student at
-                    <a href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener">Fudan TEAI</a>
-                    and a computer science undergraduate at
-                    <a href="https://www.cumt.edu.cn/" target="_blank" rel="noopener">China University of Mining and Technology</a>.
-                    I am currently an <b>Embodied AI Algorithm Intern</b> at
-                    <a href="https://www.noematrix.ai/" target="_blank" rel="noopener">Noematrix</a>
-                    in Shanghai, working on embodied AI post-training.
+                    My research focuses on VLA policies that are fast enough for closed-loop control
+                    and still keep track of what they have done over a long task.
                 </p>
                 <p>
-                    My research explores how vision-language models reason about the physical world
-                    and guide robots through <b>long-horizon manipulation</b>, with an interest in
-                    <b>spatial intelligence</b>. Longer term, I want to work on
-                    <b>RSI (recursive self-improvement) in Embodied AI</b>.
+                    I am an <b>Embodied AI Algorithm Intern</b> at
+                    <a href="https://www.noematrix.ai/" target="_blank" rel="noopener">Noematrix</a>, working on
+                    VLA post-training, and an incoming graduate student at
+                    <a href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener">Fudan TEAI</a>.
+                    Before that, at <a href="https://www.sigs.tsinghua.edu.cn/" target="_blank" rel="noopener">Tsinghua SIGS</a>,
+                    I was co-first author of <a href="#pub-chainvla">ChainVLA</a> and
+                    <a href="#pub-robostream">RoboStream</a> (ECCV 2026), on execution state and memory for
+                    long-horizon manipulation. Longer term, I want to work on
+                    <b>RSI (recursive self-improvement) in Embodied AI</b>: policies that keep improving from their own experience.
                 </p>
             </section>
 
-            <section class="section" id="news">
-                <h2>News</h2>
-                <ul class="news">
-                    <li><time datetime="2026-11">2026.11</time><p><b>Mind2Act World</b> is now on <a href="https://arxiv.org/abs/2611.26444" target="_blank" rel="noopener">arXiv</a>, with benchmark code available on <a href="https://github.com/Mind2Act/Mind2Act_World" target="_blank" rel="noopener">GitHub</a>.</p></li>
-                    <li><time datetime="2026-10">2026.10</time><p>Joined <a href="https://www.noematrix.ai/" target="_blank" rel="noopener">Noematrix</a> as an <b>Embodied AI Algorithm Intern</b>.</p></li>
-                    <li><time datetime="2026-10">2026.10</time><p>Awarded the <b>National Scholarship</b> (2025–2026 academic year).</p></li>
-                    <li><time datetime="2026-09">2026.09</time><p>Admitted to the <a href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener">Institute of Trustworthy Embodied Artificial Intelligence (TEAI)</a>, Fudan University, as an incoming graduate student.</p></li>
-                    <li><time datetime="2026-07">2026.07</time><p>Paper <b>RoboStream</b> accepted to <i>ECCV 2026</i>.</p></li>
+            <section class="section" id="research" aria-labelledby="research-title">
+                <h2 id="research-title">Research</h2>
+                <ol class="themes">
+                    <li>
+                        <span class="theme-no">01</span>
+                        <h3 class="theme-title">Execution state across action chunks</h3>
+                        <p class="theme-q">Keeping a fast, chunked VLA policy aware of task progress and of the motion it was in the middle of.</p>
+                        <p class="theme-papers"><a href="#pub-chainvla">ChainVLA</a> · under review, co-first</p>
+                    </li>
+                    <li>
+                        <span class="theme-no">02</span>
+                        <h3 class="theme-title">Memory for long-horizon manipulation</h3>
+                        <p class="theme-q">How does a robot on step twelve still know what steps one to eleven achieved, and what is left?</p>
+                        <p class="theme-papers"><a href="#pub-robostream">RoboStream</a> · ECCV 2026, co-first</p>
+                    </li>
+                    <li>
+                        <span class="theme-no">03</span>
+                        <h3 class="theme-title">VLA post-training<span class="now-tag">Now</span></h3>
+                        <p class="theme-q">Post-training VLA policies at Noematrix, a step toward robots that improve from their own rollouts.</p>
+                        <p class="theme-papers">Noematrix · 2026.10 – present</p>
+                    </li>
+                    <li>
+                        <span class="theme-no">04</span>
+                        <h3 class="theme-title">Diagnosing mind and action</h3>
+                        <p class="theme-q">When a policy fails, did it misunderstand the task, or fail to execute it?</p>
+                        <p class="theme-papers"><a href="#pub-mind2act">Mind2Act World</a> · arXiv 2026, contributor</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="section" id="publications">
+                <div class="section-heading">
+                    <h2>Selected publications</h2>
+                    <a href="https://scholar.google.com/citations?user=GHxEFRYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <div class="publication-group">
+                <article id="pub-chainvla" class="pub pub-featured" data-topic="robotics">
+                    <div class="pub-media">
+                        <span aria-hidden="true" class="pub-badge pub-badge-muted">Under review</span>
+                        <a class="pub-thumb" href="https://muqy1818.github.io/chainvla-web/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                            <img src="static/assets/img/Papers/thumbs/chainvla.jpg" alt="" width="560" height="292" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="pub-body">
+                        <h4 class="pub-title"><a href="https://muqy1818.github.io/chainvla-web/" target="_blank" rel="noopener">ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation</a></h4>
+                        <p class="pub-description">A unified execution state for carrying context across long-horizon VLA queries.</p>
+                        <p class="pub-authors"><b>Weijue Bu</b>*, et al.</p>
+                        <div class="pub-meta">
+                        <span class="venue-chip venue-plain">Under review</span>
+                        <span class="pub-links"><a href="https://muqy1818.github.io/chainvla-web/" target="_blank" rel="noopener">Project Page</a></span>
+                        </div>
+                    </div>
+                </article>
+                <article id="pub-robostream" class="pub pub-featured pub-video" data-topic="robotics">
+                    <div class="pub-media">
+                    <span aria-hidden="true" class="pub-badge">ECCV 2026</span>
+                    <a class="pub-thumb" href="https://robostream123.github.io/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                        <video src="static/assets/videos/robostream_thumb.mp4" data-preview-label="RoboStream preview"
+                               poster="static/assets/img/Papers/thumbs/robostream.jpg"
+                               width="560" height="316" data-preview-video muted loop playsinline preload="metadata"></video>
+                    </a>
+                    </div>
+                    <div class="pub-body">
+                        <h4 class="pub-title"><a href="https://robostream123.github.io/" target="_blank" rel="noopener">RoboStream: Weaving Spatio-Temporal Reasoning with Memory in Vision-Language Models for Robotics</a></h4>
+                        <p class="pub-description">Spatio-temporal reasoning and memory for vision-language models in long-horizon robotic manipulation.</p>
+                        <p class="pub-authors">Yuzhi Huang*, Jie Wu*, <b>Weijue Bu</b>*, Ziyi Xiong, Gaoyang Jiang, Ye Li, Kangye Ji, Shuzhao Xie, Yue Huang, Chenglei Wu, Jingyan Jiang, Zhi Wang</p>
+                        <div class="pub-meta">
+                        <span class="venue-chip">ECCV 2026</span>
+                        <span class="pub-links"><a href="https://robostream123.github.io/" target="_blank" rel="noopener">Project Page</a> · <a href="https://github.com/yu2hi13/RoboStream" target="_blank" rel="noopener">Code</a> · <a href="https://arxiv.org/abs/2603.12939" target="_blank" rel="noopener">arXiv</a></span>
+                        </div>
+                    </div>
+                </article>
+                <article id="pub-mind2act" class="pub pub-featured pub-video" data-topic="robotics">
+                    <div class="pub-media">
+                    <span aria-hidden="true" class="pub-badge pub-badge-muted">arXiv 2026</span>
+                    <a class="pub-thumb pub-thumb-cover" href="https://mind2act-world.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                        <video src="static/assets/videos/mind2act_thumb.mp4"
+                               poster="static/assets/img/Papers/thumbs/mind2act.jpg"
+                               width="640" height="360" data-preview-video data-preview-label="Mind2Act World preview" muted loop playsinline preload="metadata"></video>
+                    </a>
+                    </div>
+                    <div class="pub-body">
+                        <h4 class="pub-title"><a href="https://mind2act-world.com/" target="_blank" rel="noopener">Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation</a></h4>
+                        <p class="pub-description">Diagnoses embodied mind, physical action, and their composition across 30 simulation tasks and 180 configurations in three suites: Mind, Act, and Mind2Act.</p>
+                        <p class="pub-authors">Yuzhi Huang, Jie Wu, Fanding Huang, &hellip;, <b>Weijue Bu</b>, &hellip;, Jingyan Jiang, Zhi Wang</p>
+                        <div class="pub-meta">
+                        <span class="venue-chip venue-plain">arXiv preprint, 2026</span>
+                        <span class="pub-links"><a href="https://mind2act-world.com/" target="_blank" rel="noopener">Project Page</a> · <a href="https://github.com/Mind2Act/Mind2Act_World" target="_blank" rel="noopener">Code</a> · <a href="https://arxiv.org/abs/2611.26444" target="_blank" rel="noopener">arXiv</a> · <a href="https://v.douyin.com/rN4StOLLY5k/" target="_blank" rel="noopener">Douyin</a> · <a href="https://www.xiaohongshu.com/explore/6af459e1000000002a0108d1" target="_blank" rel="noopener">RedNote</a></span>
+                        </div>
+                    </div>
+                </article>
+                </div>
+                <h3 class="pub-sub">Other publications</h3>
+                <ul class="other-pubs">
+                    <li><span class="op-title">Conscious Gaze: Adaptive Attention Mechanisms for Hallucination Mitigation in Vision-Language Models</span>
+                        <span class="op-meta"><b>Weijue Bu</b>, Guan Yuan, Guixian Zhang · ICME 2026 · <a href="https://arxiv.org/abs/2512.05546" target="_blank" rel="noopener">arXiv</a></span></li>
+                    <li><span class="op-title">CALO: Code-Aware and Load-Aware Resource Configuration for Serverless Functions via Deep Reinforcement Learning</span>
+                        <span class="op-meta">Donghong Xu, <b>Weijue Bu</b>, Zhouliang Ye, Shilong Wu · IEEE Transactions on Cloud Computing, 2026 · <a href="https://github.com/MuQY1818/calo-experiments" target="_blank" rel="noopener">Code</a></span></li>
+                    <li><span class="op-title">PiN-Mod: Identity-Consistent Personalized Image Generation</span>
+                        <span class="op-meta"><b>Weijue Bu</b>, et al. · Under review</span></li>
                 </ul>
-                <details class="news-more">
-                    <summary>Earlier updates</summary>
-                    <ul class="news">
-                    <li><time datetime="2026-07">2026.07</time><p>Paper <b>CALO</b> accepted to <i>IEEE Transactions on Cloud Computing</i>.</p></li>
-                    <li><time datetime="2026-03">2026.03</time><p>Paper <b>Conscious Gaze</b> accepted to <i>ICME 2026</i>.</p></li>
-                    <li><time datetime="2025-10">2025.10</time><p>Won <b>National First Prize</b> in the "Challenge Cup" Competition.</p></li>
-                    <li><time datetime="2025-07">2025.07</time><p>Awarded <b>Academic Potential 1st Prize</b> at SJTU Summer School.</p></li>
-                    </ul>
-                </details>
+                <p class="pub-note">* Equal contribution.</p>
+            </section>
+
+            <section class="section" id="open-source" aria-labelledby="open-source-title">
+                <h2 id="open-source-title">Open Source</h2>
+                <div class="projects">
+                    <article class="project">
+                        <a class="project-icon" href="https://github.com/MuQY1818/macbot" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                            <img class="pixel" src="static/assets/img/macbot-mark.svg" alt="" width="64" height="56" loading="lazy">
+                        </a>
+                        <div class="project-body">
+                            <h3 class="project-title"><a href="https://github.com/MuQY1818/macbot" target="_blank" rel="noopener">macbot</a></h3>
+                            <p class="project-description">
+                                LeRobot on a MacBook: one workflow to teleoperate, record, export and run LeRobot
+                                policies such as ACT, π0.5 and SmolVLA, with fast inference on Apple silicon
+                                (about 165 ms per π0.5 action chunk with MLX on an M5 Pro).
+                            </p>
+                            <p class="project-meta">Python · LeRobot · MLX / PyTorch MPS · Apache-2.0</p>
+                            <p class="project-links">
+                                <a href="https://github.com/MuQY1818/macbot" target="_blank" rel="noopener">Code</a> ·
+                                <a href="https://pypi.org/project/macbot/" target="_blank" rel="noopener">PyPI</a> ·
+                                <a href="https://github.com/MuQY1818/macbot/blob/main/docs/acceleration.md" target="_blank" rel="noopener">Benchmarks</a>
+                            </p>
+                        </div>
+                    </article>
+                    <article class="project">
+                        <a class="project-icon" href="https://muqy1818.github.io/OpenYoink/en/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                            <img src="static/assets/img/openyoink-icon.png" alt="" width="256" height="256" loading="lazy">
+                        </a>
+                        <div class="project-body">
+                            <h3 class="project-title"><a href="https://github.com/MuQY1818/OpenYoink" target="_blank" rel="noopener">OpenYoink</a></h3>
+                            <p class="project-description">
+                                A free, open-source macOS drag-and-drop shelf and Dynamic Island for
+                                files, images, text, and links, with Quick Look previews, optional
+                                clipboard history, and multi-display support.
+                            </p>
+                            <p class="project-meta">SwiftUI · AppKit · macOS · MIT License</p>
+                            <p class="project-links">
+                                <a href="https://muqy1818.github.io/OpenYoink/en/" target="_blank" rel="noopener">Website</a> ·
+                                <a href="https://github.com/MuQY1818/OpenYoink" target="_blank" rel="noopener">Code</a> ·
+                                <a href="https://github.com/MuQY1818/OpenYoink/releases/latest" target="_blank" rel="noopener">Download</a>
+                            </p>
+                        </div>
+                    </article>
+                </div>
             </section>
 
             <section class="section" id="experience" aria-labelledby="experience-title">
@@ -137,7 +259,23 @@
                         </div>
                         <p class="exp-role">Embodied AI Algorithm Intern</p>
                         <p class="exp-when">2026.10 &ndash; present</p>
-                        <p class="exp-desc">Embodied AI post-training. Joined on October 26, 2026.</p>
+                        <p class="exp-desc">Post-training for vision-language-action models.</p>
+                    </article>
+                    <article class="exp-card">
+                        <a class="exp-brand" href="https://www.sigs.tsinghua.edu.cn/" target="_blank" rel="noopener">
+                            <img class="exp-logo" src="static/assets/img/affiliations/tsinghua-logo.svg" alt="Tsinghua University" width="1000" height="388" loading="lazy">
+                        </a>
+                        <div class="exp-head">
+                            <h3>Tsinghua University</h3>
+                        </div>
+                        <p class="exp-role">Research Intern &middot; Shenzhen International Graduate School</p>
+                        <p class="exp-when">2025.12 &ndash; 2026.08</p>
+                        <p class="exp-desc">Long-horizon robotic manipulation. Co-first author of <a href="#pub-chainvla">ChainVLA</a> (under review) and <a href="#pub-robostream">RoboStream</a> (ECCV 2026).</p>
+                        <details class="experience-detail">
+                            <summary>Research details</summary>
+                            <p><b>RoboStream</b> &middot; Co-implemented the spatio-temporal reasoning and memory framework for VLM-driven robot manipulation, and built its RLBench / SIMPLER evaluation pipeline with long- and short-horizon task suites.</p>
+                            <p><b>ChainVLA</b> &middot; Co-developed the unified execution state that chains vision-language-action queries across long-horizon manipulation tasks.</p>
+                        </details>
                     </article>
                     <article class="exp-card">
                         <a class="exp-brand" href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener">
@@ -162,207 +300,46 @@
                         <p class="exp-when">2023.09 &ndash; present</p>
                         <p class="exp-desc">Expected graduation: June 2027.</p>
                     </article>
-                    <article class="exp-card">
-                        <a class="exp-brand" href="https://www.sigs.tsinghua.edu.cn/" target="_blank" rel="noopener">
-                            <img class="exp-logo" src="static/assets/img/affiliations/tsinghua-logo.svg" alt="Tsinghua University" width="1000" height="388" loading="lazy">
-                        </a>
-                        <div class="exp-head">
-                            <h3>Tsinghua University</h3>
-                        </div>
-                        <p class="exp-role">Research Intern &middot; Shenzhen International Graduate School</p>
-                        <p class="exp-when">2025.12 &ndash; 2026.08</p>
-                        <p class="exp-desc">Long-horizon robotic manipulation with vision-language models. Co-first author of <a href="#publications">RoboStream</a> (ECCV 2026) and <a href="#publications">ChainVLA</a> (under review).</p>
-                        <details class="experience-detail">
-                            <summary>Research details</summary>
-                            <p><b>RoboStream</b> &middot; Co-implemented the spatio-temporal reasoning and memory framework for VLM-driven robot manipulation, and built its RLBench / SIMPLER evaluation pipeline with long- and short-horizon task suites.</p>
-                            <p><b>ChainVLA</b> &middot; Co-developed the unified execution state that chains vision-language-action queries across long-horizon manipulation tasks.</p>
-                        </details>
-                    </article>
                 </div>
             </section>
 
-            <section class="section" id="publications">
-                <div class="section-heading">
-                    <h2>Publications</h2>
-                    <a href="https://scholar.google.com/citations?user=GHxEFRYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-                </div>
-                <div class="publication-filters" role="group" aria-label="Research topics" hidden>
-                    <button type="button" data-filter="all" aria-pressed="true">All</button>
-                    <button type="button" data-filter="robotics" aria-pressed="false"><span class="topic-dot topic-dot-robotics" aria-hidden="true"></span>Robotics</button>
-                    <button type="button" data-filter="multimodal" aria-pressed="false"><span class="topic-dot topic-dot-multimodal" aria-hidden="true"></span>Multimodal</button>
-                    <button type="button" data-filter="systems" aria-pressed="false"><span class="topic-dot topic-dot-systems" aria-hidden="true"></span>Systems</button>
-                </div>
-                <p class="filter-status" role="status" data-filter-status hidden></p>
-
-                <div class="publication-group">
-                <h3 class="pub-sub">Peer-reviewed Conference</h3>
-
-                <article class="pub pub-featured pub-video" data-topic="robotics">
-                    <div class="pub-media">
-                    <span aria-hidden="true" class="pub-badge">ECCV 2026</span>
-                    <a class="pub-thumb" href="https://robostream123.github.io/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                        <video src="static/assets/videos/robostream_thumb.mp4" data-preview-label="RoboStream preview"
-                               poster="static/assets/img/Papers/thumbs/robostream.jpg"
-                               width="560" height="316" data-preview-video muted loop playsinline preload="metadata"></video>
-                    </a>
-                    </div>
-                    <div class="pub-body">
-                        <span class="pub-topic"><span class="topic-dot topic-dot-robotics" aria-hidden="true"></span>Robotics</span>
-                        <h4 class="pub-title"><a href="https://robostream123.github.io/" target="_blank" rel="noopener">RoboStream: Weaving Spatio-Temporal Reasoning with Memory in Vision-Language Models for Robotics</a></h4>
-                        <p class="pub-description">Spatio-temporal reasoning and memory for vision-language models in long-horizon robotic manipulation.</p>
-                        <p class="pub-authors">Yuzhi Huang*, Jie Wu*, <b>Weijue Bu</b>*, Ziyi Xiong, Gaoyang Jiang, Ye Li, Kangye Ji, Shuzhao Xie, Yue Huang, Chenglei Wu, Jingyan Jiang, Zhi Wang</p>
-                        <div class="pub-meta">
-                        <span class="venue-chip">ECCV 2026</span>
-                        <span class="pub-links"><a href="https://robostream123.github.io/" target="_blank" rel="noopener">Project Page</a> · <a href="https://github.com/yu2hi13/RoboStream" target="_blank" rel="noopener">Code</a> · <a href="https://arxiv.org/abs/2603.12939" target="_blank" rel="noopener">arXiv</a></span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub" data-topic="multimodal">
-                    <div class="pub-media">
-                        <span aria-hidden="true" class="pub-badge">ICME 2026</span>
-                        <a class="pub-thumb" href="https://arxiv.org/abs/2512.05546" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                            <img src="static/assets/img/Papers/thumbs/cgvlm.jpg" alt="" width="560" height="280" loading="lazy">
-                        </a>
-                    </div>
-                    <div class="pub-body">
-                        <span class="pub-topic"><span class="topic-dot topic-dot-multimodal" aria-hidden="true"></span>Multimodal</span>
-                        <h4 class="pub-title"><a href="https://arxiv.org/abs/2512.05546" target="_blank" rel="noopener">Conscious Gaze: Adaptive Attention Mechanisms for Hallucination Mitigation in Vision-Language Models</a></h4>
-                        <p class="pub-description">Adaptive attention mechanisms for reducing hallucinations in vision-language models.</p>
-                        <p class="pub-authors"><b>Weijue Bu</b>, Guan Yuan, Guixian Zhang</p>
-                        <div class="pub-meta">
-                        <span class="venue-chip">ICME 2026</span>
-                        <span class="pub-links"><a href="https://arxiv.org/abs/2512.05546" target="_blank" rel="noopener">arXiv</a></span>
-                        </div>
-                    </div>
-                </article>
-                </div>
-
-                <div class="publication-group">
-                <h3 class="pub-sub">Peer-reviewed Journal</h3>
-
-                <article class="pub" data-topic="systems">
-                    <div class="pub-media">
-                        <span aria-hidden="true" class="pub-badge">IEEE TCC 2026</span>
-                        <a class="pub-thumb" href="https://github.com/MuQY1818/calo-experiments" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                            <img src="static/assets/img/Papers/thumbs/calo.jpg" alt="" width="560" height="262" loading="lazy">
-                        </a>
-                    </div>
-                    <div class="pub-body">
-                        <span class="pub-topic"><span class="topic-dot topic-dot-systems" aria-hidden="true"></span>Systems</span>
-                        <h4 class="pub-title"><a href="https://github.com/MuQY1818/calo-experiments" target="_blank" rel="noopener">CALO: Code-Aware and Load-Aware Resource Configuration for Serverless Functions via Deep Reinforcement Learning</a></h4>
-                        <p class="pub-description">Learning resource configurations that adapt to serverless code and changing workloads.</p>
-                        <p class="pub-authors">Donghong Xu, <b>Weijue Bu</b>, Zhouliang Ye, Shilong Wu</p>
-                        <div class="pub-meta">
-                        <span class="venue-chip">IEEE TCC 2026</span>
-                        <span class="pub-links"><a href="https://github.com/MuQY1818/calo-experiments" target="_blank" rel="noopener">Code</a></span>
-                        </div>
-                    </div>
-                </article>
-                </div>
-
-                <div class="publication-group">
-                <h3 class="pub-sub">Preprints &amp; Under Review</h3>
-
-                <article class="pub pub-featured pub-video" data-topic="robotics">
-                    <div class="pub-media">
-                    <span aria-hidden="true" class="pub-badge pub-badge-muted">arXiv 2026</span>
-                    <a class="pub-thumb pub-thumb-cover" href="https://mind2act-world.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                        <video src="static/assets/videos/mind2act_thumb.mp4"
-                               poster="static/assets/img/Papers/thumbs/mind2act.jpg"
-                               width="640" height="360" data-preview-video data-preview-label="Mind2Act World preview" muted loop playsinline preload="metadata"></video>
-                    </a>
-                    </div>
-                    <div class="pub-body">
-                        <span class="pub-topic"><span class="topic-dot topic-dot-robotics" aria-hidden="true"></span>Robotics</span>
-                        <h4 class="pub-title"><a href="https://mind2act-world.com/" target="_blank" rel="noopener">Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation</a></h4>
-                        <p class="pub-description">Diagnoses embodied mind, physical action, and their composition across 30 simulation tasks and 180 configurations in three suites: Mind, Act, and Mind2Act.</p>
-                        <p class="pub-authors">Yuzhi Huang, Jie Wu, Fanding Huang, &hellip;, <b>Weijue Bu</b>, &hellip;, Jingyan Jiang, Zhi Wang</p>
-                        <div class="pub-meta">
-                        <span class="venue-chip venue-plain">arXiv preprint, 2026</span>
-                        <span class="pub-links"><a href="https://mind2act-world.com/" target="_blank" rel="noopener">Project Page</a> · <a href="https://github.com/Mind2Act/Mind2Act_World" target="_blank" rel="noopener">Code</a> · <a href="https://arxiv.org/abs/2611.26444" target="_blank" rel="noopener">arXiv</a> · <a href="https://v.douyin.com/rN4StOLLY5k/" target="_blank" rel="noopener">Douyin</a> · <a href="https://www.xiaohongshu.com/explore/6af459e1000000002a0108d1" target="_blank" rel="noopener">RedNote</a></span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub pub-featured" data-topic="robotics">
-                    <div class="pub-media">
-                        <span aria-hidden="true" class="pub-badge pub-badge-muted">Under review</span>
-                        <a class="pub-thumb" href="https://muqy1818.github.io/chainvla-web/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                            <img src="static/assets/img/Papers/thumbs/chainvla.jpg" alt="" width="560" height="292" loading="lazy">
-                        </a>
-                    </div>
-                    <div class="pub-body">
-                        <span class="pub-topic"><span class="topic-dot topic-dot-robotics" aria-hidden="true"></span>Robotics</span>
-                        <h4 class="pub-title"><a href="https://muqy1818.github.io/chainvla-web/" target="_blank" rel="noopener">ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation</a></h4>
-                        <p class="pub-description">A unified execution state for carrying context across long-horizon VLA queries.</p>
-                        <p class="pub-authors"><b>Weijue Bu</b>*, et al.</p>
-                        <div class="pub-meta">
-                        <span class="venue-chip venue-plain">Under review</span>
-                        <span class="pub-links"><a href="https://muqy1818.github.io/chainvla-web/" target="_blank" rel="noopener">Project Page</a></span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub" data-topic="multimodal">
-                    <div class="pub-media">
-                        <span aria-hidden="true" class="pub-badge pub-badge-muted">Under review</span>
-                        <span class="pub-thumb">
-                            <img src="static/assets/img/Papers/thumbs/pinmod.jpg" alt="" width="560" height="294" loading="lazy">
-                        </span>
-                    </div>
-                    <div class="pub-body">
-                        <span class="pub-topic"><span class="topic-dot topic-dot-multimodal" aria-hidden="true"></span>Multimodal</span>
-                        <h4 class="pub-title">PiN-Mod: Identity-Consistent Personalized Image Generation</h4>
-                        <p class="pub-description">Personalized image generation with consistent identity across outputs.</p>
-                        <p class="pub-authors"><b>Weijue Bu</b>, et al.</p>
-                        <div class="pub-meta">
-                        <span class="venue-chip venue-plain">Under review</span>
-                        </div>
-                    </div>
-                </article>
-                </div>
-
-                <p class="pub-note">* Equal contribution.</p>
+            <section class="section" id="news">
+                <h2>News</h2>
+                <ul class="news">
+                    <li><time datetime="2026-11">2026.11</time><p><b>Mind2Act World</b> is now on <a href="https://arxiv.org/abs/2611.26444" target="_blank" rel="noopener">arXiv</a>, with benchmark code on <a href="https://github.com/Mind2Act/Mind2Act_World" target="_blank" rel="noopener">GitHub</a>.</p></li>
+                    <li><time datetime="2026-10">2026.10</time><p>Joined <a href="https://www.noematrix.ai/" target="_blank" rel="noopener">Noematrix</a> as an <b>Embodied AI Algorithm Intern</b>.</p></li>
+                    <li><time datetime="2026-09">2026.09</time><p>Admitted to <a href="https://teai.fudan.edu.cn/" target="_blank" rel="noopener">Fudan TEAI</a> (Institute of Trustworthy Embodied AI) as an incoming graduate student.</p></li>
+                    <li><time datetime="2026-07">2026.07</time><p><b>RoboStream</b> accepted to <i>ECCV 2026</i>.</p></li>
+                </ul>
+                <details class="news-more">
+                    <summary>Earlier updates</summary>
+                    <ul class="news">
+                    <li><time datetime="2026-10">2026.10</time><p>Awarded the <b>National Scholarship</b>.</p></li>
+                    <li><time datetime="2026-07">2026.07</time><p><b>CALO</b> accepted to <i>IEEE Transactions on Cloud Computing</i>.</p></li>
+                    <li><time datetime="2026-03">2026.03</time><p><b>Conscious Gaze</b> accepted to <i>ICME 2026</i>.</p></li>
+                    </ul>
+                </details>
             </section>
 
-            <section class="section" id="open-source" aria-labelledby="open-source-title">
-                <h2 id="open-source-title">Open Source</h2>
-                <article class="project">
-                    <a class="project-icon" href="https://muqy1818.github.io/OpenYoink/en/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                        <img src="static/assets/img/openyoink-icon.png" alt="" width="256" height="256" loading="lazy">
-                    </a>
-                    <div class="project-body">
-                        <h3 class="project-title"><a href="https://github.com/MuQY1818/OpenYoink" target="_blank" rel="noopener">OpenYoink</a></h3>
-                        <p class="project-description">
-                            A free, open-source macOS drag-and-drop shelf and Dynamic Island for
-                            files, images, text, and links, with Quick Look previews, optional
-                            clipboard history, and multi-display support.
-                        </p>
-                        <p class="project-meta">SwiftUI · AppKit · macOS · MIT License</p>
-                        <p class="project-links">
-                            <a href="https://muqy1818.github.io/OpenYoink/en/" target="_blank" rel="noopener">Website</a> ·
-                            <a href="https://github.com/MuQY1818/OpenYoink" target="_blank" rel="noopener">Code</a> ·
-                            <a href="https://github.com/MuQY1818/OpenYoink/releases/latest" target="_blank" rel="noopener">Download</a>
-                        </p>
-                    </div>
-                </article>
-            </section>
-
-            <section class="section" id="awards">
-                <h2>Awards &amp; Honors</h2>
+            <section class="section" id="honors">
+                <h2>Honors</h2>
                 <ul class="awards">
-                    <li><time datetime="2026-10">2026.10</time><p><b>National Scholarship</b> (2025–2026 academic year)</p></li>
-                    <li><time datetime="2026-08">2026.08</time><p><b>Second Prize</b>, 15th "China Software Cup" Collegiate Software Design Contest, National Finals (Higher Education Group)</p></li>
+                    <li><time datetime="2026-10">2026.10</time><p><b>National Scholarship</b> (2025–2026)</p></li>
                     <li><time datetime="2025-10">2025.10</time><p><b>National First Prize</b>, "Challenge Cup" Unveiling Competition</p></li>
-                    <li><time datetime="2025-09">2025.09</time><p><b>15th Place</b>, Tianchi Alibaba Mobile Recommendation Algorithm Challenge</p></li>
                     <li><time datetime="2025-07">2025.07</time><p><b>Academic Potential 1st Prize</b>, SJTU Natural Sciences Institute Summer School</p></li>
-                    <li><time datetime="2025-07">2025.07</time><p><b>Second Prize</b>, RAICOM Jiangsu Division Programming Skills Competition</p></li>
                     <li><time datetime="2025-05">2025.05</time><p><b>Bronze Medal</b>, ICPC China Invitational</p></li>
+                </ul>
+                <details class="awards-more">
+                    <summary>Programming &amp; math contests (6 more)</summary>
+                    <ul class="awards">
+                    <li><time datetime="2026-08">2026.08</time><p><b>Second Prize</b>, 15th "China Software Cup", National Finals</p></li>
+                    <li><time datetime="2025-09">2025.09</time><p><b>15th Place</b>, Tianchi Alibaba Mobile Recommendation Algorithm Challenge</p></li>
+                    <li><time datetime="2025-07">2025.07</time><p><b>Second Prize</b>, RAICOM Jiangsu Division Programming Skills Competition</p></li>
                     <li><time datetime="2025-05">2025.05</time><p><b>Second Prize (Provincial)</b>, Lanqiao Cup C/C++ Programming</p></li>
                     <li><time datetime="2024-06">2024.06</time><p><b>Second Prize (Provincial)</b>, Jiangsu Higher Mathematics Competition</p></li>
                     <li><time datetime="2024-04">2024.04</time><p><b>Third Prize (National)</b>, GPLT Group Programming Ladder Tournament</p></li>
-                </ul>
+                    </ul>
+                </details>
             </section>
 
             <section class="section reflections" id="reflections" aria-labelledby="reflections-title">
@@ -439,8 +416,6 @@
         <span>© 2026 Weijue Bu</span>
         <span><a href="https://github.com/MuQY1818/muqy1818.github.io" target="_blank" rel="noopener">Source</a></span>
     </footer>
-
 </div>
-
 </body>
 </html>

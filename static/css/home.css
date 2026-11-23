@@ -961,3 +961,46 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     .pub-thumb { transition: none; }
     .pub:hover .pub-thumb { transform: none; }
 }
+
+/* ============================================================
+   2026-11-22 VLA refresh: research themes, other publications,
+   open-source list, folded honors.
+   ============================================================ */
+
+/* ---------- hero ---------- */
+.intro-heading { margin-bottom: 18px; }
+.intro-focus { letter-spacing: -.005em; }
+
+/* ---------- research ---------- */
+.themes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 36px; }
+.themes li { padding: 18px 0 22px; border-top: 1px solid var(--line); }
+.themes li:nth-child(-n+2) { border-top: 0; padding-top: 2px; }
+.theme-no { display: block; margin-bottom: 8px; font-family: "Newsreader", Georgia, serif; font-size: 2.1rem; line-height: 1; color: var(--link); letter-spacing: -.02em; }
+.theme-title { margin: 0 0 6px; font-family: "Newsreader", Georgia, serif; font-weight: 500; font-size: 1.16rem; line-height: 1.35; color: var(--ink-strong); }
+.theme-q { margin: 0 0 8px; font-size: .86rem; line-height: 1.6; }
+.theme-papers { margin: 0; font-size: .78rem; color: var(--muted); }
+.theme-papers a { font-weight: 600; }
+.now-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border: 1px solid var(--link);
+    border-radius: 999px; font: 600 .62rem/1.4 Inter, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--link); vertical-align: 3px; }
+.now-tag::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: var(--link); vertical-align: 1px; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+
+@media (max-width: 760px) {
+    .themes { grid-template-columns: 1fr; }
+    .themes li:nth-child(2) { border-top: 1px solid var(--line); padding-top: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .now-tag::before { animation: none; }
+}
+
+.other-pubs { list-style: none; margin: 8px 0 0; padding: 0; }
+.other-pubs li { padding: 10px 0; border-top: 1px solid var(--line); font-size: .86rem; }
+.other-pubs .op-title { color: var(--ink-strong); font-weight: 600; }
+.other-pubs .op-meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+
+.projects { display: grid; gap: 14px; }
+.project-icon .pixel { image-rendering: pixelated; padding: 6px 4px; }
+
+.awards-more { margin-top: 10px; font-size: .78rem; }
+.awards-more summary { cursor: pointer; color: var(--link); }
+.awards-more .awards { margin-top: 10px; }
