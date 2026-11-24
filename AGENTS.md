@@ -1,5 +1,9 @@
 # Project Update Notes
 
+## 2026-11-24
+
+- The ChainVLA publication card now uses a muted looping preview like RoboStream and Mind2Act World: `static/assets/videos/chainvla_thumb.mp4` (15.5 s, 640x360, 24 fps, no audio, about 410 KB) cut from the three full-screen rollout shots of the ChainVLA promo video (Put Back Block, Swap Blocks, Rearrange Blocks), with poster `static/assets/img/Papers/thumbs/chainvla_video.jpg`. The card also links to the full video on the project page (`chainvla-web/#video`). The static `chainvla.jpg` thumb is kept but unused. This is a publication-card preview, not the rejected hero video.
+
 ## 2026-11-22
 
 - Research positioning changed at the user's request from **Agentic Robotics / Embodied Reasoning** to **vision-language-action (VLA) models for long-horizon manipulation**; the user judged the real-time, closed-loop advantage of VLA policies over VLM-agent pipelines to be the better direction. This supersedes the 2026-10-17 label note for the homepage (tagline, meta description, sidebar focus, bio). RSI stays as the long-term goal. The GitHub profile README (MuQY1818/MuQY1818) was rewritten to match on 2026-11-23 (2026-11-23 final: avatar + serif name header SVG, plain-text links, prose intro, 01–04 research index SVGs with hairlines, paper thumbnails, macbot + OpenYoink, Fudan logo in experience, hand-drawn signature at the end; no WeChat). The user rejected the template look (typing SVG, shields badges, skill-icon wall, gradient cards, wave footer, emoji) as "AI味重"; keep it restrained. SVGs are generated from this repo's fonts/avatar/signature. The account bio is now "Embodied AI Algorithm Intern @ Noematrix | VLA Models for Long-Horizon Manipulation".
